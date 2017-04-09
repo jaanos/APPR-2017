@@ -6,6 +6,11 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2016/17
 
 Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
 napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+V tem projektu bom analiziral vključenost mladih v šolski sistem, trg dela, prostovoljstvo po letih po starosti in spolu po evropskih državah.
+Podatkovne vire bom jemal z Eurostata, Statističnega urada Republike Slovenije ...
+V stolpcih 'Tidy data' bodo: Država, leto, starost, spol, število, vključenih v izobraževanje, zaposleni, prostovoljci ...
+Države bom razvrščal po deležu posameznih kategorij, geografski legi (del Evrope), BDP/prebivalca ...
+Napovedoval bom spremembe v številu zaposlenih, šolajočih se, prostovoljcev za prihodnja leta.
 
 ## Program
 
