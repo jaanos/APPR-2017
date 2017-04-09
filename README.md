@@ -4,8 +4,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2016/17
 
 ## Tematika
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
-napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+Pri predmetu APPR bom preučil kulturne dejavnosti v Sloveniji. Ogledal si bom število kulturnih prireditev in število udeležencev le-teh ter poskušal raziskati, kako se je kultura razvijala v Sloveniji skozi leta. Povdarek bom dal na gledališke predstavitve, koncerte in razstave v muzejih in galerijah. Poskusil bom poiskati trende in jih vsebinsko razdelati. Podatke bom vzel iz Statističnega urada Republike Slovenije.
 
 ## Program
 
