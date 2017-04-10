@@ -2,7 +2,8 @@
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2016/17
 
-## Aktivnost mladih v Evropi
+## Tematika
+# Aktivnost mladih v Evropi
 
 V tem projektu bom analiziral vključenost mladih v šolski sistem, trg dela, prostovoljstvo po letih po starosti in spolu po evropskih državah.
 
@@ -14,6 +15,9 @@ Države bom razvrščal po deležu posameznih kategorij, geografski legi (del Ev
 Napovedoval bom spremembe v številu zaposlenih, šolajočih se, prostovoljcev za prihodnja leta.
 
 Podatke bom črpal z:
+eurostat (csv, xml)
+surs
+...
 
 ## Program
 
