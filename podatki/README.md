@@ -1,6 +1,7 @@
-## Podatki
+# Podatki
 
-# Podatki iz SURS-a: ()
+## Podatki iz SURS-a:
+(Podatki so na voljo v oblikiah: Excel, Axis, CSV, HTML)
 
 •	Poslovanje podjetij po panogah, Slovenija, četrtletno: http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=1430310S&ti=&path=../Database/Ekonomsko/14_poslovni_subjekti/10_14303_cetrt_poslovanje_podj/&lang=1
 
@@ -8,7 +9,8 @@
 
 •	Prihodki podjetij po dejavnostih(samo za 2014, mogoče ne bom vključila!!!): http://pxweb.stat.si/pxweb/dialog/varval.asp?ma=H049S&ti=&path=..%2FDatabase%2FHitre_Repozitorij%2F&xu=&yp=&lang=2
 
-# DRUGI PODATKI: 
+## DRUGI PODATKI:
+(Podatki so na voljo v oblikah: CSV, HTML)
 CIMOS: http://www.cimos.si/index.php?page=static&item=98 http://www.cimos.si/index.php?page=letna_porocila&item=99 
 
 REVOZ: http://www.revoz.si/bin?bin.svc=obj&bin.id=DB63EA63-7CFA-79F1-D73B-C4B6B9E960A0 
