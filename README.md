@@ -10,7 +10,7 @@ V drugem delu bom dodala analizo nekaj konkretnih večjih slovenskih podjetij (o
 
 Podatki iz SURS-a:
 •	Poslovanje podjetij po panogah, Slovenija, četrtletno:
-http://pxweb.stat.si/pxweb/Dialog/varval.aspma=1430310S&ti=&path=../Database/Ekonomsko/14_poslovni_subjekti/10_14303_cetrt_poslovanje_podj/&lang=1
+http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=1430310S&ti=&path=../Database/Ekonomsko/14_poslovni_subjekti/10_14303_cetrt_poslovanje_podj/&lang=1
 
 •	št. podjetij po regijah: 
 http://pxweb.stat.si/pxweb/Dialog/varval.aspma=1418806S&ti=Podjetja+po+kohezijskih+in+statisti%E8nih+regijah%2C+Slovenija%2C+letno&path=../Database/Ekonomsko/14_poslovni_subjekti/01_14188_podjetja/&lang=2
