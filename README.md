@@ -3,21 +3,16 @@
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2016/17
 
 ## Tematika
-# Aktivnost mladih v Evropi
+V tem projektu z naslovom Aktivnost mladih v Evropi bom analiziral vključenost mladih v šolski sistem, trg dela, prostovoljstvo, šport po letih, starosti in spolu po evropskih državah.
 
-V tem projektu bom analiziral vključenost mladih v šolski sistem, trg dela, prostovoljstvo po letih po starosti in spolu po evropskih državah.
+Podatkovne vire bom pretežno jemal z Eurostata (csv in xml) ...
 
-Podatkovne vire bom jemal z Eurostata, Statističnega urada Republike Slovenije ...
-
-V stolpcih 'Tidy data' bodo: Država, leto, starost, spol, število, vključenih v izobraževanje, zaposleni, prostovoljci ...
+Tidy data:
+Stolpci: država, leto, starost, spol
+Meritve: število, število vključenih v izobraževanje, zaposleni, prostovoljci, športniki ...
 
 Države bom razvrščal po deležu posameznih kategorij, geografski legi (del Evrope), BDP/prebivalca ...
-Napovedoval bom spremembe v številu zaposlenih, šolajočih se, prostovoljcev za prihodnja leta.
-
-Podatke bom črpal z:
-eurostat (csv, xml)
-surs
-...
+Napovedoval bom spremembe v številu po kategorijah za prihodnja leta.
 
 ## Program
 
