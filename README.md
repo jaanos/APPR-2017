@@ -11,7 +11,7 @@ V zadnjem delu, bom v analizo za primerjavo vključila 6 konkretnih večjih slov
 
 * podatki iz SURS-a: http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=1418806S&ti=Podjetja+po+kohezijskih+in+statisti%E8nih+regijah%2C+Slovenija%2C+letno&path=../Database/Ekonomsko/14_poslovni_subjekti/01_14188_podjetja/&lang=2
 
-* podatki v tabeli: leto (2008-2015), Slovenske regije, število podjetij, število oseb (,ki delajo na podjetje), prihodek (v 100 EUR)
+* podatki v tabeli: leto (2008-2015), Slovenske regije, število podjetij, število oseb (,ki delajo na podjetje), prihodek (v 1000 EUR)
 
 
 2.)	Poslovanje podjetij po panogah, Slovenija, četrtletno:
