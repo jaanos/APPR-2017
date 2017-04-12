@@ -2,7 +2,7 @@
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2016/17
 
-## Slovenska podjetja po panogah
+## Tematika
 
 Seminarska naloga bo vključevala različne podatke o slovenskih podjetjih na splošno. Najprej njihovo število po posameznih regijah, nato pa podatki iz poslovanja podjetij glede na panogo.
 V zadnjem delu, bom v analizo za primerjavo vključila 6 konkretnih večjih slovenskih podjetij (Revoz, Cimos, Krka, Lek, Gen-I, HSE), med katerimi bosta po dva pripadala isti panogi.
