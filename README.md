@@ -9,6 +9,7 @@ Podatkovne vire bom jemal z:
 * Eurostata,
 * Statističnega urada Republike Slovenije
 * ...
+
 V stolpcih 'Tidy data' bodo:
 * Država,
 * leto,
@@ -19,15 +20,18 @@ V stolpcih 'Tidy data' bodo:
 * zaposleni,
 * prostovoljci
 * ...
+
 Države bom razvrščal po 
 * deležu posameznih kategorij, 
 * geografski legi (del Evrope), 
 * BDP/prebivalca
 * ...
+
 Napovedoval bom spremembe v
 * številu zaposlenih,
 * šolajočih se, 
 * prostovoljcev 
+
 za prihodnja leta.
 
 ## Program
