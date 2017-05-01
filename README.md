@@ -1,6 +1,7 @@
 # Analiza podatkov s programom R, 2016/17
 
 Avtor: Ana Golob
+
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2016/17
 
 ## Temtika
