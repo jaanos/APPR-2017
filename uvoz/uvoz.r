@@ -1,5 +1,20 @@
 # 2. faza: Uvoz podatkov
 
+# .csv datoteke uvežene iz Eurostata
+d <- dir('podatki')
+z <- grep('\\.csv$', d)
+podatki <- d[z]
+
+for (i in 1:length(podatki)) {
+  View(read.csv2(paste('podatki/', podatki[i], sep=''), sep=','))
+  }
+
+# .html datoteke uvežene iz Eurostata
+z <- grep('\\.html$', d)
+podatki <- d[z]
+
+html.datoteka <- paste('podatki/', podatki[1], sep='')
+
 # Funkcija, ki uvozi občine iz Wikipedije
 uvozi.obcine <- function() {
   link <- "http://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji"
