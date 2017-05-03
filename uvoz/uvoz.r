@@ -1,53 +1,30 @@
-# 2. faza: Uvoz podatkov
-
-# Funkcija, ki uvozi občine iz Wikipedije
-uvozi.obcine <- function() {
-  link <- "http://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji"
-  stran <- html_session(link) %>% read_html()
-  tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable sortable']") %>%
-    .[[1]] %>% html_table(dec = ",")
-  colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
-                        "ustanovitev", "pokrajina", "regija", "odcepitev")
-  tabela$obcina <- gsub("Slovenskih", "Slov.", tabela$obcina)
-  tabela$obcina[tabela$obcina == "Kanal ob Soči"] <- "Kanal"
-  tabela$obcina[tabela$obcina == "Loški potok"] <- "Loški Potok"
-  for (col in colnames(tabela)) {
-    tabela[tabela[[col]] == "-", col] <- NA
-  }
-  for (col in c("povrsina", "prebivalci", "gostota", "naselja", "ustanovitev")) {
-    if (is.numeric(tabela[[col]])) {
-      next()
-    }
-    tabela[[col]] <- gsub("[.*]", "", tabela[[col]]) %>% as.numeric()
-  }
-  for (col in c("obcina", "pokrajina", "regija")) {
-    tabela[[col]] <- factor(tabela[[col]])
-  }
-  return(tabela)
+stolpci<-c("OBČINE","VRSTA PRIREDITVE","VRSTA PRODUKCIJE","LETO","ŠTEVILO PRIREDITEV")
+#uvozimo podatke iz /podatki
+uvozi.prireditve <- function() {
+return(read.csv2("podatki/podatki2.csv",header=FALSE,encoding="Windows-1250",skip=2, col.names=stolpci,nrows=7248))
 }
 
-# Funkcija, ki uvozi podatke iz datoteke druzine.csv
-uvozi.druzine <- function(obcine) {
-  data <- read_csv2("podatki/druzine.csv", col_names = c("obcina", 1:4),
-                    locale = locale(encoding = "Windows-1250"))
-  data$obcina <- data$obcina %>% strapplyc("^([^/]*)") %>% unlist() %>%
-    strapplyc("([^ ]+)") %>% sapply(paste, collapse = " ") %>% unlist()
-  data$obcina[data$obcina == "Sveti Jurij"] <- "Sveti Jurij ob Ščavnici"
-  data <- data %>% melt(id.vars = "obcina", variable.name = "velikost.druzine",
-                        value.name = "stevilo.druzin")
-  data$velikost.druzine <- as.numeric(data$velikost.druzine)
-  data$obcina <- factor(data$obcina, levels = obcine)
-  return(data)
-}
+#urejamo podatke
+tabela<-uvozi.prireditve()
+tabela$ŠTEVILO.PRIREDITEV[tabela$ŠTEVILO.PRIREDITEV =="-"] <-NA
+tabela$OBČINE[tabela$OBČINE ==" "] <-NA
+tabela$OBČINE<-na.locf(tabela$OBČINE)
+tabela$VRSTA.PRIREDITVE[tabela$VRSTA.PRIREDITVE ==" "] <-NA
+tabela$VRSTA.PRIREDITVE<-na.locf(tabela$VRSTA.PRIREDITVE)
+tabela$VRSTA.PRODUKCIJE[tabela$VRSTA.PRODUKCIJE ==" "] <-NA
+tabela$VRSTA.PRODUKCIJE<-na.locf(tabela$VRSTA.PRODUKCIJE)
+require(zoo)
+tabela<-subset(tabela, tabela$LETO>2000 & tabela$LETO <=2020)
+#naredimo ločeni tabeli, v kateri bodo števila obiskovalcev
+tabela2<-subset(tabela, VRSTA.PRODUKCIJE == "..Število obiskovalcev (otroci in mladina)")
+tabela2$VRSTA.PRODUKCIJE<-NULL
+colnames(tabela2)<-c("OBČINE","VRSTA.PRIREDITVE","LETO","ŠTEVILO OBISKOVALCEV (otrok in mladine)")
+tabela<-subset(tabela, VRSTA.PRODUKCIJE!="..Število obiskovalcev (otroci in mladina)")
+tabela3<-subset(tabela, VRSTA.PRODUKCIJE == "Število obiskovalcev - SKUPAJ")
+tabela<-subset(tabela, VRSTA.PRODUKCIJE!="Število obiskovalcev - SKUPAJ")
+tabela3$VRSTA.PRODUKCIJE<-NULL
+colnames(tabela3)<-c("OBČINE","VRSTA.PRIREDITVE","LETO","ŠTEVILO OBISKOVALCEV SKUPAJ")
 
-# Zapišimo podatke v razpredelnico obcine
-obcine <- uvozi.obcine()
-
-# Zapišimo podatke v razpredelnico druzine.
-druzine <- uvozi.druzine(levels(obcine$obcina))
-
-# Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
-# potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
-# datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
-# 2. fazi. Seveda bi morali ustrezno datoteko uvoziti v prihodnjih
-# fazah.
+#graf števila prireditev instrumentalnih koncertov v Sloveniji po letih:
+graf<-ggplot(tabela %>% filter(OBČINE=="SLOVENIJA"&VRSTA.PRIREDITVE=="Instrumentalni koncerti"&VRSTA.PRODUKCIJE=="Vse prireditve - SKUPAJ"))+aes(x=LETO, y=ŠTEVILO.PRIREDITEV)+geom_point()
+print(graf)
