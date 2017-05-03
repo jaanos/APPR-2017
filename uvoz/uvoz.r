@@ -13,6 +13,8 @@ uvozi.drzave <- function() {
   data <- read_csv("podatki/nama_10_pc_1_Data.csv",
                     locale = locale(encoding = "Windows-1250"))
   names(data) <- c("leto", 'drzava', 'enota', 'BDP', 'vrednost')
+  izbris <- data$drzava == 'Euro'
+  data <- data[!izbris,]
   return(data)
 }
 View(uvozi.drzave())
@@ -22,6 +24,7 @@ uvozi.drzavljani <- function() {
   data <- read_csv("podatki/nama_10_pe_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"))
   names(data) <- c("leto", 'drzava', 'enota', 'Skupno', 'stevilo')
+  data$Skupno <- NULL
   return(data)
 }
 View(uvozi.drzavljani())
