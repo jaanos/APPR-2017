@@ -115,7 +115,7 @@ uvozi.religija <- function() {
 
 # Funkcija, ki uvozi podatke o prostovoljstvu
 uvozi.prostovoljstvo <- function() {
-  stran <- html_session(podatki/yth_volunt_010.html) %>% read_html()
+  stran <- html_session("podatki/yth_volunt_010.html") %>% read_html()
   tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable sortable']") %>%
     .[[1]] %>% html_table(dec = ",")
   colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
