@@ -1,6 +1,7 @@
 library(knitr)
 library(dplyr)
 library(readr)
+library(tidyr)
 library(rvest)
 library(gsubfn)
 library(ggplot2)

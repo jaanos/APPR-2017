@@ -1,4 +1,3 @@
-library(tidyr)
 uvozi.prireditve <- function() {
   stolpci <- c("OBCINE","VRSTA.PRIREDITVE","VRSTA.PRODUKCIJE","LETO","STEVILO.PRIREDITEV")
   tab <- read_csv2("podatki/podatki2.csv", locale = locale(encoding = "Windows-1250"),
