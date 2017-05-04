@@ -1,19 +1,13 @@
-stolpci<-c("OBČINE","VRSTA PRIREDITVE","VRSTA PRODUKCIJE","LETO","ŠTEVILO PRIREDITEV")
-#uvozimo podatke iz /podatki
+library(tidyr)
 uvozi.prireditve <- function() {
-return(read.csv2("podatki/podatki2.csv",header=FALSE,encoding="Windows-1250",skip=2, col.names=stolpci,nrows=7248))
+  stolpci <- c("OBCINE","VRSTA.PRIREDITVE","VRSTA.PRODUKCIJE","LETO","STEVILO.PRIREDITEV")
+  tab <- read_csv2("podatki/podatki2.csv", locale = locale(encoding = "Windows-1250"),
+                    na = c("", "-"), skip = 2, col_names = stolpci, n_max = 7248) %>%
+    fill(1:4) %>% drop_na(STEVILO.PRIREDITEV)
+  return(tab)
 }
 
 #urejamo podatke
-tabela<-uvozi.prireditve()
-tabela$ŠTEVILO.PRIREDITEV[tabela$ŠTEVILO.PRIREDITEV =="-"] <-NA
-tabela$OBČINE[tabela$OBČINE ==" "] <-NA
-tabela$OBČINE<-na.locf(tabela$OBČINE)
-tabela$VRSTA.PRIREDITVE[tabela$VRSTA.PRIREDITVE ==" "] <-NA
-tabela$VRSTA.PRIREDITVE<-na.locf(tabela$VRSTA.PRIREDITVE)
-tabela$VRSTA.PRODUKCIJE[tabela$VRSTA.PRODUKCIJE ==" "] <-NA
-tabela$VRSTA.PRODUKCIJE<-na.locf(tabela$VRSTA.PRODUKCIJE)
-require(zoo)
 tabela<-subset(tabela, tabela$LETO>2000 & tabela$LETO <=2020)
 #naredimo ločeni tabeli, v kateri bodo števila obiskovalcev
 tabela2<-subset(tabela, VRSTA.PRODUKCIJE == "..Število obiskovalcev (otroci in mladina)")
