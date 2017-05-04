@@ -7,6 +7,7 @@ uvozi.prireditve <- function() {
 }
 
 #urejamo podatke
+tabela<-uvozi.prireditve()
 tabela<-subset(tabela, tabela$LETO>2000 & tabela$LETO <=2020)
 #naredimo ločeni tabeli, v kateri bodo števila obiskovalcev
 tabela2<-subset(tabela, VRSTA.PRODUKCIJE == "..Število obiskovalcev (otroci in mladina)")
@@ -19,5 +20,5 @@ tabela3$VRSTA.PRODUKCIJE<-NULL
 colnames(tabela3)<-c("OBČINE","VRSTA.PRIREDITVE","LETO","ŠTEVILO OBISKOVALCEV SKUPAJ")
 
 #graf števila prireditev instrumentalnih koncertov v Sloveniji po letih:
-graf<-ggplot(tabela %>% filter(OBČINE=="SLOVENIJA"&VRSTA.PRIREDITVE=="Instrumentalni koncerti"&VRSTA.PRODUKCIJE=="Vse prireditve - SKUPAJ"))+aes(x=LETO, y=ŠTEVILO.PRIREDITEV)+geom_point()
+graf<-ggplot(tabela %>% filter(OBCINE=="SLOVENIJA"&VRSTA.PRIREDITVE=="Instrumentalni koncerti"&VRSTA.PRODUKCIJE=="Vse prireditve - SKUPAJ"))+aes(x=LETO, y=STEVILO.PRIREDITEV)+geom_point()
 print(graf)
