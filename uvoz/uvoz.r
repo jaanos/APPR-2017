@@ -21,6 +21,7 @@ uvozi.drzave <- function() {
 }
 drzave <- uvozi.drzave()
 drzave$vrednost <- parse_number(drzave$vrednost, na=c(NA, ":"))
+drzave <- na.omit(drzave)
 View(drzave)
 
 # Funkcija, ki uvozi podatke o drzavljanih (v tisoč)
@@ -37,6 +38,10 @@ uvozi.drzavljani <- function() {
   data$Skupno <- NULL
   return(data)
 }
+drzavljani <- uvozi.drzavljani()
+drzavljani$stevilo <- parse_number(drzavljani$stevilo, na=c(NA, ":"))
+drzavljani <- na.omit(drzavljani)
+View(drzavljani)
 
 # Funkcija, ki uvozi podatke o stevilu mladih (stevilo)
 uvozi.mladi <- function() {
@@ -51,6 +56,10 @@ uvozi.mladi <- function() {
   data$komentarji <- NULL
   return(data)
 }
+mladi <- uvozi.mladi()
+mladi$stevilo <- parse_number(mladi$stevilo, na=c(NA, ":"))
+mladi <- na.omit(mladi)
+View(mladi)
 
 # Funkcija, ki uvozi podatke o izobrazenosti mladih (v odstotkih)
 uvozi.izobrazba <- function() {
@@ -64,6 +73,10 @@ uvozi.izobrazba <- function() {
   data$komentarji <- NULL
   return(data)
 }
+izobrazba <- uvozi.izobrazba()
+izobrazba$stevilo <- parse_number(izobrazba$stevilo, na=c(NA, ":"))
+izobrazba <- na.omit(izobrazba)
+View(izobrazba)
 
 # Funkcija, ki uvozi podatke o neformalnem izobrazevanju (v odstotkih)
 uvozi.neformalno <- function() {
@@ -77,6 +90,10 @@ uvozi.neformalno <- function() {
   data$komentarji <- NULL
   return(data)
 }
+neformalno <- uvozi.neformalno()
+neformalno$stevilo <- parse_number(neformalno$stevilo, na=c(NA, ":"))
+neformalno <- na.omit(neformalno)
+View(neformalno)
 
 # Funkcija, ki uvozi podatke o zaposlenosti (v odstotkih)
 uvozi.zaposlenost <- function() {
@@ -92,6 +109,10 @@ uvozi.zaposlenost <- function() {
   data$komentarji <- NULL
   return(data)
 }
+zaposlenost <- uvozi.zaposlenost()
+zaposlenost$stevilo <- parse_number(zaposlenost$stevilo, na=c(NA, ":"))
+zaposlenost <- na.omit(zaposlenost)
+View(zaposlenost)
 
 # Funkcija, ki uvozi podatke o neaktivnih (nezaposlenih, nešolajočih se) (v odstotkih)
 uvozi.neaktivni <- function() {
@@ -104,10 +125,15 @@ uvozi.neaktivni <- function() {
   data$enota <- NULL
   data$komentarji <- NULL
   data$zaposlen <- NULL
+  data$spol <- NULL
   data$Neaktivnost <- NULL
   data$izobrazba <- NULL
   return(data)
 }
+neaktivni <- uvozi.neaktivni()
+neaktivni$vrednost <- parse_number(neaktivni$vrednost, na=c(NA, ":"))
+neaktivni <- na.omit(neaktivni)
+View(neaktivni)
 
 # Funkcija, ki uvozi podatke o vkljucenosti v aktivnosti znotraj religij in cerkva (v odstotkih)
 uvozi.religija <- function() {
@@ -117,10 +143,16 @@ uvozi.religija <- function() {
   izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
   data <- data[!izbris,]
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
+  izbris2 <- data$spol != data$spol[grep("Total", data$spol, ignore.case=TRUE)]
+  data <- data[izbris2,]
   data$enota <- NULL
   data$DA_NE <- NULL
   return(data)
 }
+religija <- uvozi.religija()
+religija$vrednost <- parse_number(religija$vrednost, na=c(NA, ":"))
+religija <- na.omit(religija)
+View(religija)
 
 # Funkcija, ki uvozi podatke o prostovoljstvu
 uvozi.prostovoljstvo <- function() {
