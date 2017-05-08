@@ -1,11 +1,12 @@
 # 2. faza: Uvoz podatkov
 library(readr)
 library(dplyr)
+library(httr)
 
 # Funkcija, ki uvozi podatke o BDP-jih držav (v EUR na osebo)
 uvozi.drzave <- function() {
   data <- read_csv("podatki/nama_10_pc_1_Data.csv",
-                    locale = locale(encoding = "Windows-1250"), na=':')
+                    locale = locale(encoding = "Windows-1250"))
   names(data) <- c("leto", 'drzava', 'enota', 'BDP', 'vrednost')
   izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
   data <- data[!izbris,]
@@ -18,11 +19,14 @@ uvozi.drzave <- function() {
   data$BDP <- NULL
   return(data)
 }
+drzave <- uvozi.drzave()
+drzave$vrednost <- parse_number(drzave$vrednost, na=c(NA, ":"))
+View(drzave)
 
 # Funkcija, ki uvozi podatke o drzavljanih (v tisoč)
 uvozi.drzavljani <- function() {
   data <- read_csv("podatki/nama_10_pe_1_Data.csv",
-                   locale = locale(encoding = "Windows-1250"), na=':')
+                   locale = locale(encoding = "Windows-1250"))
   names(data) <- c("leto", 'drzava', 'enota', 'Skupno', 'stevilo')
   izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
   data <- data[!izbris,]
@@ -120,7 +124,7 @@ uvozi.religija <- function() {
 
 # Funkcija, ki uvozi podatke o prostovoljstvu
 uvozi.prostovoljstvo <- function() {
-  stran <- html_session(podatki/yth_volunt_010.html) %>% read_html()
+  stran <- GET('http://appsso.eurostat.ec.europa.eu/nui/download?p=92c60fbc-4bf4-47ef-9757-17147c788370-1494233436416_&_=1494233696613') %>% read_html()
   tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable sortable']") %>%
     .[[1]] %>% html_table(dec = ",")
   colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
@@ -137,12 +141,4 @@ uvozi.prostovoljstvo <- function() {
   return(tabela)
 }
 
-drzave <- uvozi.drzave()
-drzavljani <- uvozi.drzavljani()
-mladi <- uvozi.mladi()
-izobrazba <- uvozi.izobrazba()
-neformalno <- uvozi.neformalno()
-zaposlenost <- uvozi.zaposlenost()
-neaktivni <- uvozi.neaktivni()
-religija <- uvozi.religija()
 prostovoljstvo <- uvozi.prostovoljstvo()
