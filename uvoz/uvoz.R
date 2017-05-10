@@ -9,4 +9,3 @@ rekordi$Feet <- NULL
 rekordi$Yards <- NULL
 rekordi$No. <- NULL
 
-rekordi$Country[rekordi$Country == "Â Norway"] <- "Norway"
