@@ -1,15 +1,20 @@
 # 2. Faza: uvoz podatkov
+
+# Knjižnjice:
 library(dplyr)
 library(reader)
 library(stats)
 library(tidyr)
 
-this.dir <- dirname(parent.frame(2)$ofile) # frame(3) also works.
+# Nastavitev relativne poti do csv datotek:
+
+this.dir <- dirname(parent.frame(2)$ofile)
 setwd(this.dir)
 setwd('..')
 trenutno = setwd(Sys.getenv("HOME"));
 
-# Funkcija, ki uvozi podatke iz datoteke druzine.csv
+
+# Funkciji, ki uvozita podatke iz datoteke druzine csv:
 
 uvozi.meritve <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "meritve.csv");
@@ -25,10 +30,6 @@ uvozi.meritve <- function(trenutno) {
   return(tabela)
 }
 
-
-tabela1 <- uvozi.meritve(trenutno)
-View(tabela1)
-
 uvozi.place <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "place.csv");
   tabela <- read.csv2(fpot,
@@ -42,6 +43,12 @@ uvozi.place <- function(trenutno) {
   tabela <- tabela[!vrstice.z.na,]
   return(tabela)
 }
+
+
+# Klicanje zgornjih funkcij:
+
+tabela1 <- uvozi.meritve(trenutno)
+View(tabela1)
 
 tabela2 <- uvozi.place(trenutno)
 View(tabela2)
