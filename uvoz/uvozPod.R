@@ -48,11 +48,15 @@ uvozi.place <- function(trenutno) {
 uvozi.turizem <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "turizem.csv");
   tabela <- read.csv2(fpot,
-                      sep = ";",
+                      skip = 4,
                       na=c("", " "),
                       col.names = c("OBÈINA", "LETO", "PARAMETER" , "VREDNOST"),
                       header = FALSE
   )
+  tabela <- tabela %>% fill(1:2)
+  vrstice.z.na <- apply(tabela, 1, function(x){any(is.na(x))})
+  tabela <- tabela[!vrstice.z.na,]
+  return(tabela)  
 }
 
 
