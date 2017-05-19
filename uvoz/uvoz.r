@@ -1,6 +1,11 @@
-# 2. faza: Uvoz podatkov
+# 2. faza: Uvoz podatkov:
 
-# Funkcija, ki uvozi občine iz Wikipedije
+# Knjižnjice:
+library(dplyr)
+library(rvest)
+Encoding("Windows-1250")
+
+# Funkcija, ki uvozi podatke iz Wikipedije:
 uvozi.obcine <- function() {
   link <- "http://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji"
   stran <- html_session(link) %>% read_html()
@@ -27,6 +32,7 @@ uvozi.obcine <- function() {
 }
 
 
-# Zapišimo podatke v razpredelnico obcine
+# Klicanje funkcije:
 obcine <- uvozi.obcine()
+View(obcine)
 
