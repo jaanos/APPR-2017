@@ -45,6 +45,17 @@ uvozi.place <- function(trenutno) {
 }
 
 
+uvozi.turizem <- function(trenutno) {
+  fpot = file.path(trenutno, 'podatki', "turizem.csv");
+  tabela <- read.csv2(fpot,
+                      sep = ";",
+                      na=c("", " "),
+                      col.names = c("OBÈINA", "LETO", "PARAMETER" , "VREDNOST"),
+                      header = FALSE
+  )
+}
+
+
 # Klicanje zgornjih funkcij:
 
 tabela1 <- uvozi.meritve(trenutno)
@@ -52,6 +63,9 @@ View(tabela1)
 
 tabela2 <- uvozi.place(trenutno)
 View(tabela2)
+
+tabela3 <- uvozi.turizem(trenutno)
+View(tabela3)
 
 
 
