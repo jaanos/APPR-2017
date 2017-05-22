@@ -1,12 +1,18 @@
 # 3. faza: Vizualizacija podatkov
 library(ggplot2)
 library(dplyr)
+
 # Uvozimo zemljevid.
-zemljevid <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/OB.zip",
-                             "OB/OB", encoding = "Windows-1250")
-levels(zemljevid$OB_UIME) <- levels(zemljevid$OB_UIME) %>%
-  { gsub("Slovenskih", "Slov.", .) } %>% { gsub("-", " - ", .) }
-zemljevid$OB_UIME <- factor(zemljevid$OB_UIME, levels = levels(drzave$drzava))
+zemljevid <- uvozi.zemljevid("http://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/NUTS_2013_10M_SH.zip",
+                             "NUTS_2013_10M_SH/data/NUTS_RG_10M_2013", encoding = "UTF-8") %>%
+  pretvori.zemljevid() %>% filter(STAT_LEVL_ == 0) %>% filter(NUTS_ID == 'SI' | NUTS_ID == 'IT' | NUTS_ID == 'SE' | 
+                                                                NUTS_ID == 'PL' | NUTS_ID == 'HR' | NUTS_ID == 'HU' | 
+                                                                NUTS_ID == 'AT' | NUTS_ID == 'UK' | NUTS_ID == 'FR')
+
+ggplot() + geom_polygon(data = zemljevid, aes(x = long, y = lat, group = group, color=NUTS_ID), color='red') +
+  coord_map(xlim = c(-25, 40), ylim = c(32, 72))
+
+zemljevid$NUTS_ID <- factor(zemljevid$NUTS_ID, levels = levels(drzave$drzava))
 zemljevid <- pretvori.zemljevid(zemljevid)
 
 # Izračunamo povprečno velikost družine
