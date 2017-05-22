@@ -13,7 +13,74 @@ zemljevid <- pretvori.zemljevid(zemljevid)
 #povprecja <- druzine %>% group_by(obcina) %>%
 #  summarise(povprecje = sum(velikost.druzine * stevilo.druzin) / sum(stevilo.druzin))
 
-g <- ggplot(drzave) + aes(x=leto, y=vrednost, color = drzava) +
+a <- ggplot(drzave %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                drzava == 'United Kingdom' | drzava == 'Italy' |
+                                drzava == 'Slovenia' | drzava == 'Poland' |
+                                drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=leto, y=vrednost, color = drzava) +
   geom_line() + ggtitle("BDP")
-# ggplot(drzave %>% filter(drzava == 'Slovenia'))
+print(a)
+
+b <- ggplot(drzavljani %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                drzava == 'United Kingdom' | drzava == 'Italy' |
+                                drzava == 'Slovenia' | drzava == 'Poland' |
+                                drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=leto, y=stevilo, color = drzava) +
+  geom_line() + ggtitle("Prebivalstvo")
+print(b)
+
+c <- ggplot(mladi %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                    drzava == 'United Kingdom' | drzava == 'Italy' |
+                                    drzava == 'Slovenia' | drzava == 'Poland' |
+                                    drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=leto, y=stevilo, color = drzava) +
+  geom_line() + ggtitle("Mladi")
+print(c)
+
+d <- ggplot(izobrazba %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                    drzava == 'United Kingdom' | drzava == 'Italy' |
+                                    drzava == 'Slovenia' | drzava == 'Poland' |
+                                    drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=leto, y=stevilo, color = drzava) +
+  geom_point() + ggtitle("Izobrazba")
+print(d)
+
+e <- ggplot(neformalno %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                               drzava == 'United Kingdom' | drzava == 'Italy' |
+                               drzava == 'Slovenia' | drzava == 'Poland' |
+                               drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=leto, y=stevilo, color = spol) +
+  geom_line() + ggtitle("Neformalno izobraževanje")
+print(e)
+
+f <- ggplot(zaposlenost %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                               drzava == 'United Kingdom' | drzava == 'Italy' |
+                               drzava == 'Slovenia' | drzava == 'Poland' |
+                               drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=leto, y=stevilo, color = izobrazba) +
+  geom_line() + ggtitle("Zaposlenost mladih")
+print(f)
+
+g <- ggplot(neaktivni %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                     drzava == 'United Kingdom' | drzava == 'Italy' |
+                                     drzava == 'Slovenia' | drzava == 'Poland' |
+                                     drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=leto, y=vrednost, color = drzava) +
+  geom_line() + ggtitle("Neaktivni mladih")
 print(g)
+
+h <- ggplot(religija %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                     drzava == 'United Kingdom' | drzava == 'Italy' |
+                                     drzava == 'Slovenia' | drzava == 'Poland' |
+                                     drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=drzava, y=vrednost, color = spol) +
+  geom_point() + ggtitle("Versko udejstvovanje")
+print(h)
+
+i <- ggplot(prostovoljstvo %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                     drzava == 'United Kingdom' | drzava == 'Italy' |
+                                     drzava == 'Slovenia' | drzava == 'Poland' |
+                                     drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=drzava, y=od16do19, color = spol) +
+  geom_point() + ggtitle("Prostovoljstvo")
+print(i)
