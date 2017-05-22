@@ -12,8 +12,8 @@ zemljevid <- uvozi.zemljevid("http://ec.europa.eu/eurostat/cache/GISCO/geodatafi
 ggplot() + geom_polygon(data = zemljevid, aes(x = long, y = lat, group = group, color=NUTS_ID), color='red') +
   coord_map(xlim = c(-25, 40), ylim = c(32, 72))
 
-zemljevid$NUTS_ID <- factor(zemljevid$NUTS_ID, levels = levels(drzave$drzava))
-zemljevid <- pretvori.zemljevid(zemljevid)
+#zemljevid$NUTS_ID <- factor(zemljevid$NUTS_ID, levels = levels(drzave$drzava))
+#zemljevid <- pretvori.zemljevid(zemljevid)
 
 # Izračunamo povprečno velikost družine
 #povprecja <- druzine %>% group_by(obcina) %>%
@@ -63,8 +63,8 @@ f <- ggplot(zaposlenost %>% filter(drzava == 'Hungary' | drzava == 'France' | dr
                                drzava == 'United Kingdom' | drzava == 'Italy' |
                                drzava == 'Slovenia' | drzava == 'Poland' |
                                drzava == 'Austria' | drzava == 'Croatia')) +
-  aes(x=leto, y=stevilo, color = izobrazba) +
-  geom_line() + ggtitle("Zaposlenost mladih")
+  aes(x=leto, y=stevilo, color = spol, shape = starost, fill = izobrazba) +
+  geom_point() + ggtitle("Zaposlenost mladih")
 print(f)
 
 g <- ggplot(neaktivni %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
@@ -72,21 +72,21 @@ g <- ggplot(neaktivni %>% filter(drzava == 'Hungary' | drzava == 'France' | drza
                                      drzava == 'Slovenia' | drzava == 'Poland' |
                                      drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=vrednost, color = drzava) +
-  geom_line() + ggtitle("Neaktivni mladih")
-print(g)
+  geom_point() + ggtitle("Neaktivni mladi")
+#print(g)
 
 h <- ggplot(religija %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                      drzava == 'United Kingdom' | drzava == 'Italy' |
                                      drzava == 'Slovenia' | drzava == 'Poland' |
                                      drzava == 'Austria' | drzava == 'Croatia')) +
-  aes(x=drzava, y=vrednost, color = spol) +
+  aes(x=drzava, y=vrednost, color=starost, shape = spol) +
   geom_point() + ggtitle("Versko udejstvovanje")
-print(h)
+#print(h)
 
 i <- ggplot(prostovoljstvo %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                      drzava == 'United Kingdom' | drzava == 'Italy' |
                                      drzava == 'Slovenia' | drzava == 'Poland' |
                                      drzava == 'Austria' | drzava == 'Croatia')) +
-  aes(x=drzava, y=od16do19, color = spol) +
+  aes(x=drzava, y = stevilo, color = starost, shape = spol) +
   geom_point() + ggtitle("Prostovoljstvo")
-print(i)
+#print(i)

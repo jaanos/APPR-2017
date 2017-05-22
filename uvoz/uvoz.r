@@ -115,6 +115,7 @@ uvozi.zaposlenost <- function() {
   data$starost <- gsub("[^0-9]*([0-9]+)[^0-9]*([0-9]+)[^0-9]*", "\\1 do \\2", data$starost, ignore.case=TRUE)
   izbris4 <- data$izobrazba != data$izobrazba[grep("^((All)|(No))", data$izobrazba, ignore.case=TRUE)]
   data <- data[izbris4,]
+  data$starost <- data$starost[!(data$starost == '15 do 24' | data$starost == '15 do 29' | data$starost == '20 do 29')]
   data$izobrazba <- gsub(".+\\(levels ([0-9])[^0-9]+([0-9])\\)$", "\\1-\\2", data$izobrazba, ignore.case=TRUE)
   data$enota <- NULL
   data$komentarji <- NULL
@@ -155,7 +156,7 @@ uvozi.religija <- function() {
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
   izbris2 <- data$spol != data$spol[grep("Total", data$spol, ignore.case=TRUE)]
   data <- data[izbris2,]
-  data$starost <- gsub("[^0-9]*([0-9]+)[^0-9]*([0-9]+)[^0-9]*", "od\\1do\\2", data$starost, ignore.case=TRUE)
+  data$starost <- gsub("[^0-9]*([0-9]+)[^0-9]*([0-9]+)[^0-9]*", "\\1 - \\2", data$starost, ignore.case=TRUE)
   data$enota <- NULL
   data$DA_NE <- NULL
   data$leto <- NULL
@@ -199,6 +200,16 @@ uvozi.prostovoljstvo <- function() {
   for (col in c("drzava", "spol")) {
     tabela[[col]] <- factor(tabela[[col]])
   }
+  a <- tabela[c(1,2,5)]
+  a$starost <- '16-19'
+  colnames(a) <- c('drzava', 'stevilo', 'spol', 'starost')
+  b <- tabela[c(1,3,5)]
+  b$starost <- '20-24'
+  colnames(b) <- c('drzava', 'stevilo', 'spol', 'starost')
+  c <- tabela[c(1,4,5)]
+  c$starost <- '25-29'
+  colnames(c) <- c('drzava', 'stevilo', 'spol', 'starost')
+  tabela <- rbind(a, b, c)
   return(tabela)
 }
 prostovoljstvo <- uvozi.prostovoljstvo()
