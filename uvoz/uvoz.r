@@ -201,7 +201,6 @@ uvozi.prostovoljstvo <- function() {
     tabela[[col]] <- factor(tabela[[col]])
   }
   a <- tabela[c(1,2,5)]
-<<<<<<< HEAD
   names(a)[2] <- 'vrednost'
   a$starost <- '16-19'
   b <- tabela[c(1,3,5)]
@@ -210,21 +209,10 @@ uvozi.prostovoljstvo <- function() {
   c <- tabela[c(1,4,5)]
   names(c)[2] <- 'vrednost'
   c$starost <- '25-29'
-=======
-  a$starost <- '16-19'
-  colnames(a) <- c('drzava', 'stevilo', 'spol', 'starost')
-  b <- tabela[c(1,3,5)]
-  b$starost <- '20-24'
-  colnames(b) <- c('drzava', 'stevilo', 'spol', 'starost')
-  c <- tabela[c(1,4,5)]
-  c$starost <- '25-29'
-  colnames(c) <- c('drzava', 'stevilo', 'spol', 'starost')
->>>>>>> 9fe3e57989e00ffbeeeb841495ca54d815496191
   tabela <- rbind(a, b, c)
   return(tabela)
 }
 prostovoljstvo <- uvozi.prostovoljstvo()
-<<<<<<< HEAD
 
 #write.csv(drzave,"podatki/urejeni_podatki/Drzave.csv",row.names=FALSE)
 #write.csv(drzavljani,"podatki/urejeni_podatki/Drzavljani.csv",row.names=FALSE)
@@ -236,5 +224,3 @@ prostovoljstvo <- uvozi.prostovoljstvo()
 #write.csv(prostovoljstvo,"podatki/urejeni_podatki/Prostovoljstvo.csv",row.names=FALSE)
 #write.csv(religija,"podatki/urejeni_podatki/Religija.csv",row.names=FALSE)
 
-=======
->>>>>>> 9fe3e57989e00ffbeeeb841495ca54d815496191
