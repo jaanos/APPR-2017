@@ -90,3 +90,12 @@ i <- ggplot(prostovoljstvo %>% filter(drzava == 'Hungary' | drzava == 'France' |
   aes(x=drzava, y = stevilo, color = starost, shape = spol) +
   geom_point() + ggtitle("Prostovoljstvo")
 #print(i)
+
+graf1 <- merge(drzave, drzavljani)
+j <- ggplot(graf1 %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                        drzava == 'United Kingdom' | drzava == 'Italy' |
+                                        drzava == 'Slovenia' | drzava == 'Poland' |
+                                        drzava == 'Austria' | drzava == 'Croatia')) +
+  aes(x=stevilo, y = stevilo, color = drzava, shape = leto) +
+  geom_point() + ggtitle("graf1")
+print(j)
