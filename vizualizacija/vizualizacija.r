@@ -12,8 +12,8 @@ zemljevid <- uvozi.zemljevid("http://ec.europa.eu/eurostat/cache/GISCO/geodatafi
 ggplot() + geom_polygon(data = zemljevid, aes(x = long, y = lat, group = group, color=NUTS_ID), color='red') +
   coord_map(xlim = c(-25, 40), ylim = c(32, 72))
 
-zemljevid$NUTS_ID <- factor(zemljevid$NUTS_ID, levels = levels(drzave$drzava))
-zemljevid <- pretvori.zemljevid(zemljevid)
+#zemljevid$NUTS_ID <- factor(zemljevid$NUTS_ID, levels = levels(drzave$drzava))
+#zemljevid <- pretvori.zemljevid(zemljevid)
 
 # Izračunamo povprečno velikost družine
 #povprecja <- druzine %>% group_by(obcina) %>%

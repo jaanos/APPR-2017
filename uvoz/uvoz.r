@@ -199,6 +199,27 @@ uvozi.prostovoljstvo <- function() {
   for (col in c("drzava", "spol")) {
     tabela[[col]] <- factor(tabela[[col]])
   }
+  a <- tabela[c(1,2,5)]
+  names(a)[2] <- 'vrednost'
+  a$starost <- '16-19'
+  b <- tabela[c(1,3,5)]
+  names(b)[2] <- 'vrednost'
+  b$starost <- '20-24'
+  c <- tabela[c(1,4,5)]
+  names(c)[2] <- 'vrednost'
+  c$starost <- '25-29'
+  tabela <- rbind(a, b, c)
   return(tabela)
 }
 prostovoljstvo <- uvozi.prostovoljstvo()
+
+#write.csv(drzave,"podatki/urejeni_podatki/Drzave.csv",row.names=FALSE)
+#write.csv(drzavljani,"podatki/urejeni_podatki/Drzavljani.csv",row.names=FALSE)
+#write.csv(mladi,"podatki/urejeni_podatki/Mladi.csv",row.names=FALSE)
+#write.csv(izobrazba,"podatki/urejeni_podatki/Izobrazba.csv",row.names=FALSE)
+#write.csv(neformalno,"podatki/urejeni_podatki/Neformalno.csv",row.names=FALSE)
+#write.csv(zaposlenost,"podatki/urejeni_podatki/Zaposlenost.csv",row.names=FALSE)
+#write.csv(neaktivni,"podatki/urejeni_podatki/Neaktivni.csv",row.names=FALSE)
+#write.csv(prostovoljstvo,"podatki/urejeni_podatki/Prostovoljstvo.csv",row.names=FALSE)
+#write.csv(religija,"podatki/urejeni_podatki/Religija.csv",row.names=FALSE)
+
