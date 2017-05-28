@@ -100,4 +100,14 @@ j <- ggplot(graf1 %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava =
                                         drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=BDPpc, y = drzavljani, color = drzava, size = leto) +
   geom_point() + ggtitle("graf1")
-print(j)
+#print(j)
+
+graf3 <- merge(izobrazba, religija)
+l <- ggplot(graf3 %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                               drzava == 'United Kingdom' | drzava == 'Italy' |
+                               drzava == 'Slovenia' | drzava == 'Poland' |
+                               drzava == 'Austria' | drzava == 'Croatia') %>% filter(leto==2006)) +
+  aes(x=izobrazba, y = religija, color = drzava, shape = spol) +
+  geom_point() + ggtitle("graf3")
+print(l)
+

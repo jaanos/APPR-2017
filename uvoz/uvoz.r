@@ -245,10 +245,3 @@ religija <- read_csv("podatki/urejeni_podatki/Religija.csv",
 
 # primerjave
 graf1 <- merge(drzave, drzavljani)
-j <- ggplot(graf1 %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
-                               drzava == 'United Kingdom' | drzava == 'Italy' |
-                               drzava == 'Slovenia' | drzava == 'Poland' |
-                               drzava == 'Austria' | drzava == 'Croatia')) +
-  aes(x=stevilo, y = stevilo, color = drzava, shape = leto) +
-  geom_point() + ggtitle("graf1")
-print(j)
