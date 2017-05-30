@@ -55,10 +55,13 @@ uvozi.mladi <- function() {
   data$Skupno <- NULL
   data$enota <- NULL
   data$komentarji <- NULL
+  data$mladi <- parse_number(data$mladi, na=c(NA, ":"))
+  data <- data %>% 
+    group_by(leto, drzava) %>% 
+    summarise(mladi = sum(mladi))
   return(data)
 }
 #mladi <- uvozi.mladi()
-#mladi$mladi <- parse_number(mladi$mladi, na=c(NA, ":"))
 #mladi <- na.omit(mladi)
 
 # Funkcija, ki uvozi podatke o izobrazenosti mladih (v odstotkih, ženske)
@@ -93,10 +96,13 @@ uvozi.neformalno <- function() {
   data$enota <- NULL
   data$komentarji <- NULL
   data$starost <- NULL
+  data$neformalno <- parse_number(data$neformalno, na=c(NA, ":"))
+  data <- data %>% 
+    group_by(leto, drzava) %>% 
+    summarise(neformalno = sum(neformalno))
   return(data)
 }
 #neformalno <- uvozi.neformalno()
-#neformalno$neformalno <- parse_number(neformalno$neformalno, na=c(NA, ":"))
 #neformalno <- na.omit(neformalno)
 
 # Funkcija, ki uvozi podatke o zaposlenosti (v odstotkih)
@@ -114,7 +120,7 @@ uvozi.zaposlenost <- function() {
   data$starost <- gsub("[^0-9]*([0-9]+)[^0-9]*([0-9]+)[^0-9]*", "\\1 do \\2", data$starost, ignore.case=TRUE)
   izbris4 <- data$izobrazenost != data$izobrazenost[grep("^((All)|(No))", data$izobrazenost, ignore.case=TRUE)]
   data <- data[izbris4,]
-  data$starost <- data$starost[!(data$starost == '15 do 24' | data$starost == '15 do 29' | data$starost == '20 do 29')]
+  # sestej po starosti
   data$izobrazenost <- gsub(".+\\(levels ([0-9])[^0-9]+([0-9])\\)$", "\\1-\\2", data$izobrazenost, ignore.case=TRUE)
   data$enota <- NULL
   return(data)
@@ -158,10 +164,13 @@ uvozi.religija <- function() {
   data$enota <- NULL
   data$DA_NE <- NULL
   data$leto <- NULL
+  data$religija <- parse_number(data$religija, na=c(NA, ":"))
+  data <- data %>% 
+    group_by(drzava) %>% 
+    summarise(religija = sum(religija))
   return(data)
 }
 #religija <- uvozi.religija()
-#religija$religija <- parse_number(religija$religija, na=c(NA, ":"))
 #religija <- na.omit(religija)
 
 # Funkcija, ki uvozi podatke o prostovoljstvu (v odstotkih za 2006)
@@ -208,6 +217,10 @@ uvozi.prostovoljstvo <- function() {
   names(c)[2] <- 'prostovoljstvo'
   c$starost <- '25-29'
   tabela <- rbind(a, b, c)
+  tabela$prostovoljstvo <- parse_number(tabela$prostovoljstvo, na=c(NA, ":"))
+  tabela <- tabela %>% 
+    group_by(drzava) %>% 
+    summarise(prostovoljstvo = sum(prostovoljstvo))
   return(tabela)
 }
 #prostovoljstvo <- uvozi.prostovoljstvo()
@@ -242,4 +255,9 @@ religija <- read_csv("podatki/urejeni_podatki/Religija.csv",
                      locale = locale(encoding = "Windows-1250"), na=':')
 
 # primerjave
-graf1 <- merge(drzave, drzavljani)
+# (kar je za vec let)
+velika_tabela <- drzave %>% merge(drzavljani) %>% merge(mladi) %>%
+  merge(izobrazba) %>% merge(neformalno) %>% merge(neaktivni)
+# (kar je samo za 2006)
+mala_tabela <- merge(religija, prostovoljstvo)
+# zaposlenost ne deluje
