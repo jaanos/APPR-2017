@@ -19,17 +19,16 @@ uvozi.drzave <- function() {
   data <- data[izbris3,]
   data$enota <- NULL
   data$BDP <- NULL
+  data$BDPpc <- parse_number(data$BDPpc, na=c(NA, ":"))
   return(data)
 }
 #drzave <- uvozi.drzave()
-#drzave$BDPpc <- parse_number(drzave$BDPpc, na=c(NA, ":"))
 #drzave <- na.omit(drzave)
 
 # Funkcija, ki uvozi podatke o drzavljanih (v tisoč)
 uvozi.drzavljani <- function() {
-  data <- read_csv("podatki/nama_10_pe_1_Data.csv",
-                   locale = locale(encoding = "Windows-1250"))
-  names(data) <- c("leto", 'drzava', 'enota', 'Skupno', 'drzavljani')
+  data <- read_csv("podatki/nama_10_pe_1_Data.csv", locale = locale(encoding = "UTF-8"))
+  colnames(data) <- c("leto", 'drzava', 'enota', 'Skupno', 'drzavljani')
   izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
   data <- data[!izbris,]
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
@@ -37,10 +36,10 @@ uvozi.drzavljani <- function() {
   data <- data[izbris2,]
   data$enota <- NULL
   data$Skupno <- NULL
+  data$drzavljani <- parse_number(data$drzavljani, na=c(NA, ":"))
   return(data)
 }
 #drzavljani <- uvozi.drzavljani()
-#drzavljani$drzavljani <- parse_number(drzavljani$drzavljani, na=c(NA, ":"))
 #drzavljani <- na.omit(drzavljani)
 
 # Funkcija, ki uvozi podatke o stevilu mladih (stevilo)
@@ -104,7 +103,7 @@ uvozi.neformalno <- function() {
 uvozi.zaposlenost <- function() {
   data <- read_csv("podatki/yth_empl_010_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"), skip=1, na=':')
-  names(data) <- c("leto", 'drzava', 'spol', 'starost', 'enota', 'izobrazenost', 'zaposlenost', 'komentarji')
+  names(data) <- c("leto", 'drzava', 'spol', 'starost', 'enota', 'izobrazenost', 'zaposlenost')
   izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
   data <- data[!izbris,]
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
@@ -118,12 +117,11 @@ uvozi.zaposlenost <- function() {
   data$starost <- data$starost[!(data$starost == '15 do 24' | data$starost == '15 do 29' | data$starost == '20 do 29')]
   data$izobrazenost <- gsub(".+\\(levels ([0-9])[^0-9]+([0-9])\\)$", "\\1-\\2", data$izobrazenost, ignore.case=TRUE)
   data$enota <- NULL
-  data$komentarji <- NULL
   return(data)
 }
-zaposlenost <- uvozi.zaposlenost()
-zaposlenost$zaposlenost <- parse_number(zaposlenost$zaposlenost, na=c(NA, ":"))
-zaposlenost <- na.omit(zaposlenost)
+#zaposlenost <- uvozi.zaposlenost()
+#zaposlenost$zaposlenost <- parse_number(zaposlenost$zaposlenost, na=c(NA, ":"))
+#zaposlenost <- na.omit(zaposlenost)
 
 # Funkcija, ki uvozi podatke o neaktivnih (nezaposlenih, nešolajočih se, starih 15-19) (v odstotkih)
 uvozi.neaktivni <- function() {
@@ -219,7 +217,7 @@ uvozi.prostovoljstvo <- function() {
 #write.csv(mladi,"podatki/urejeni_podatki/Mladi.csv",row.names=FALSE)
 #write.csv(izobrazba,"podatki/urejeni_podatki/Izobrazba.csv",row.names=FALSE)
 #write.csv(neformalno,"podatki/urejeni_podatki/Neformalno.csv",row.names=FALSE)
-write.csv(zaposlenost,"podatki/urejeni_podatki/Zaposlenost.csv",row.names=FALSE)
+#write.csv(zaposlenost,"podatki/urejeni_podatki/Zaposlenost.csv",row.names=FALSE)
 #write.csv(neaktivni,"podatki/urejeni_podatki/Neaktivni.csv",row.names=FALSE)
 #write.csv(prostovoljstvo,"podatki/urejeni_podatki/Prostovoljstvo.csv",row.names=FALSE)
 #write.csv(religija,"podatki/urejeni_podatki/Religija.csv",row.names=FALSE)
