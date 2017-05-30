@@ -25,7 +25,7 @@ a <- ggplot(drzave %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava 
                                 drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=BDPpc, color = drzava) +
   geom_line() + ggtitle("BDP")
-print(a)
+#print(a)
 
 b <- ggplot(drzavljani %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                 drzava == 'United Kingdom' | drzava == 'Italy' |
@@ -33,7 +33,7 @@ b <- ggplot(drzavljani %>% filter(drzava == 'Hungary' | drzava == 'France' | drz
                                 drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=drzavljani, color = drzava) +
   geom_line() + ggtitle("Prebivalstvo")
-print(b)
+#print(b)
 
 c <- ggplot(mladi %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                     drzava == 'United Kingdom' | drzava == 'Italy' |
@@ -41,7 +41,7 @@ c <- ggplot(mladi %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava =
                                     drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=mladi, color = drzava, linetype= starost) +
   geom_line() + ggtitle("Mladi")
-print(c)
+#print(c)
 
 # as.numeric(date)
 
@@ -51,7 +51,7 @@ d <- ggplot(izobrazba %>% filter(drzava == 'Hungary' | drzava == 'France' | drza
                                     drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=izobrazba, color = drzava) +
   geom_line() + ggtitle("Izobrazba")
-print(d)
+#print(d)
 
 e <- ggplot(neformalno %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                drzava == 'United Kingdom' | drzava == 'Italy' |
@@ -59,15 +59,15 @@ e <- ggplot(neformalno %>% filter(drzava == 'Hungary' | drzava == 'France' | drz
                                drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=neformalno, color = drzava, linetype=spol) +
   geom_line() + ggtitle("Neformalno izobraževanje")
-print(e)
+#print(e)
 
 f <- ggplot(zaposlenost %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                drzava == 'United Kingdom' | drzava == 'Italy' |
                                drzava == 'Slovenia' | drzava == 'Poland' |
                                drzava == 'Austria' | drzava == 'Croatia')) +
-  aes(x=as.numeric(leto), y=zaposlenost, color = drzava) +
+  aes(x=leto, y=zaposlenost, color = drzava) +
   geom_line() + ggtitle("Zaposlenost mladih")
-print(f)
+#print(f)
 
 g <- ggplot(neaktivni %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                      drzava == 'United Kingdom' | drzava == 'Italy' |
@@ -75,7 +75,7 @@ g <- ggplot(neaktivni %>% filter(drzava == 'Hungary' | drzava == 'France' | drza
                                      drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=neaktivni, color = drzava) +
   geom_line() + ggtitle("Neaktivni mladi")
-print(g)
+#print(g)
 
 h <- ggplot(religija %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                      drzava == 'United Kingdom' | drzava == 'Italy' |
@@ -109,5 +109,5 @@ l <- ggplot(graf3 %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava =
                                drzava == 'Austria' | drzava == 'Croatia') %>% filter(leto==2006)) +
   aes(x=izobrazba, y = religija, color = drzava, shape = spol) +
   geom_point() + ggtitle("graf3")
-print(l)
+#print(l)
 
