@@ -256,16 +256,16 @@ religija <- read_csv("podatki/urejeni_podatki/Religija.csv",
 
 # primerjave
 # (kar je za vec let)
-velika_tabela <- drzave %>% merge(drzavljani) %>% merge(mladi) %>%
-  merge(izobrazba) %>% merge(neformalno) %>% merge(neaktivni)
+#velika_tabela <- drzave %>% merge(drzavljani) %>% merge(mladi) %>%
+#  merge(izobrazba) %>% merge(neformalno) %>% merge(neaktivni)
 # (kar je samo za 2006)
-mala_tabela <- merge(religija, prostovoljstvo)
+#mala_tabela <- merge(religija, prostovoljstvo)
 # zaposlenost ne deluje
 
-write.csv(velika_tabela,"podatki/urejeni_podatki/Velika_tabela.csv",row.names=FALSE)
+#write.csv(velika_tabela,"podatki/urejeni_podatki/Velika_tabela.csv",row.names=FALSE)
 velika_tabela <- read_csv("podatki/urejeni_podatki/Velika_tabela.csv",
                           locale = locale(encoding = "Windows-1250"), na=':')
-write.csv(mala_tabela,"podatki/urejeni_podatki/Mala_tabela.csv",row.names=FALSE)
+#write.csv(mala_tabela,"podatki/urejeni_podatki/Mala_tabela.csv",row.names=FALSE)
 mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
                           locale = locale(encoding = "Windows-1250"), na=':')
 
