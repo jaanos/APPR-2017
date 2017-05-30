@@ -261,3 +261,11 @@ velika_tabela <- drzave %>% merge(drzavljani) %>% merge(mladi) %>%
 # (kar je samo za 2006)
 mala_tabela <- merge(religija, prostovoljstvo)
 # zaposlenost ne deluje
+
+write.csv(velika_tabela,"podatki/urejeni_podatki/Velika_tabela.csv",row.names=FALSE)
+velika_tabela <- read_csv("podatki/urejeni_podatki/Velika_tabela.csv",
+                          locale = locale(encoding = "Windows-1250"), na=':')
+write.csv(mala_tabela,"podatki/urejeni_podatki/Mala_tabela.csv",row.names=FALSE)
+mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
+                          locale = locale(encoding = "Windows-1250"), na=':')
+
