@@ -67,7 +67,7 @@ uvozi.mladi <- function() {
   data <- merge(data, odstotki)
   data$mladi <- NULL
   data$drzavljani <- NULL
-  names(data) <- c(leto, drzava, mladi)
+  names(data) <- c('leto', 'drzava', 'mladi')
   return(data)
 }
 #mladi <- uvozi.mladi()
@@ -259,10 +259,10 @@ zaposlenost <- read_csv("podatki/urejeni_podatki/Zaposlenost.csv",
                         locale = locale(encoding = "Windows-1250"), na=':')
 neaktivni <- read_csv("podatki/urejeni_podatki/Neaktivni.csv",
                       locale = locale(encoding = "Windows-1250"), na=':')
-#prostovoljstvo <- read_csv("podatki/urejeni_podatki/Prostovoljstvo.csv",
-#                           locale = locale(encoding = "Windows-1250"), na=':')
-#religija <- read_csv("podatki/urejeni_podatki/Religija.csv",
-#                     locale = locale(encoding = "Windows-1250"), na=':')
+prostovoljstvo <- read_csv("podatki/urejeni_podatki/Prostovoljstvo.csv",
+                           locale = locale(encoding = "Windows-1250"), na=':')
+religija <- read_csv("podatki/urejeni_podatki/Religija.csv",
+                     locale = locale(encoding = "Windows-1250"), na=':')
 
 # primerjave
 # (kar je za vec let)
@@ -270,11 +270,15 @@ neaktivni <- read_csv("podatki/urejeni_podatki/Neaktivni.csv",
 #  merge(izobrazba) %>% merge(zaposlenost) %>% merge(neformalno) %>% merge(neaktivni)
 # (kar je samo za 2006)
 #mala_tabela <- merge(religija, prostovoljstvo)
-
+#velika_tabela <- velika_tabela %>% 
+#  group_by(leto, drzava) %>% 
+#  summarise(BDPpc = mean(BDPpc), drzavljani = mean(drzavljani),
+#            mladi = mean(mladi), zaposlenost = mean(zaposlenost), izobrazba = mean(izobrazba),
+#            neformalno = mean(neformalno), neaktivni = mean(neaktivni))
 #write.csv(velika_tabela,"podatki/urejeni_podatki/Velika_tabela.csv",row.names=FALSE)
 velika_tabela <- read_csv("podatki/urejeni_podatki/Velika_tabela.csv",
                           locale = locale(encoding = "Windows-1250"), na=':')
 #write.csv(mala_tabela,"podatki/urejeni_podatki/Mala_tabela.csv",row.names=FALSE)
-#mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
-#                          locale = locale(encoding = "Windows-1250"), na=':')
+mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
+                          locale = locale(encoding = "Windows-1250"), na=':')
 
