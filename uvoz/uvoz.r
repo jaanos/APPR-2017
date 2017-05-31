@@ -52,17 +52,25 @@ uvozi.mladi <- function() {
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
   data$starost <- gsub("From 15 to 29 years", "15 do 29", data$starost, ignore.case=TRUE)
   data$starost <- gsub("Less than 15 years", "do 15", data$starost, ignore.case=TRUE)
+  izbris2 <- data$Skupno == data$Skupno[grep("Total", data$Skupno, ignore.case=TRUE)]
+  data <- data[izbris2,]
   data$Skupno <- NULL
   data$enota <- NULL
   data$komentarji <- NULL
   data$mladi <- parse_number(data$mladi, na=c(NA, ":"))
+  data <- na.omit(data)
   data <- data %>% 
     group_by(leto, drzava) %>% 
     summarise(mladi = sum(mladi))
+  odstotki <- merge(data, drzavljani)
+  odstotki$odstotki <- odstotki$mladi/(odstotki$drzavljani*10)
+  data <- merge(data, odstotki)
+  data$mladi <- NULL
+  data$drzavljani <- NULL
+  names(data) <- c(leto, drzava, mladi)
   return(data)
 }
 #mladi <- uvozi.mladi()
-#mladi <- na.omit(mladi)
 
 # Funkcija, ki uvozi podatke o izobrazenosti mladih (v odstotkih, ženske)
 uvozi.izobrazba <- function() {
@@ -120,13 +128,15 @@ uvozi.zaposlenost <- function() {
   data$starost <- gsub("[^0-9]*([0-9]+)[^0-9]*([0-9]+)[^0-9]*", "\\1 do \\2", data$starost, ignore.case=TRUE)
   izbris4 <- data$izobrazenost != data$izobrazenost[grep("^((All)|(No))", data$izobrazenost, ignore.case=TRUE)]
   data <- data[izbris4,]
-  # sestej po starosti
-  data$izobrazenost <- gsub(".+\\(levels ([0-9])[^0-9]+([0-9])\\)$", "\\1-\\2", data$izobrazenost, ignore.case=TRUE)
+  # data$izobrazenost <- gsub(".+\\(levels ([0-9])[^0-9]+([0-9])\\)$", "\\1-\\2", data$izobrazenost, ignore.case=TRUE)
   data$enota <- NULL
+  data$zaposlenost <- parse_number(data$zaposlenost, na=c(NA, ":"))
+  data <- data %>% 
+    group_by(leto, drzava) %>% 
+    summarise(zaposlenost = sum(zaposlenost))
   return(data)
 }
 #zaposlenost <- uvozi.zaposlenost()
-#zaposlenost$zaposlenost <- parse_number(zaposlenost$zaposlenost, na=c(NA, ":"))
 #zaposlenost <- na.omit(zaposlenost)
 
 # Funkcija, ki uvozi podatke o neaktivnih (nezaposlenih, nešolajočih se, starih 15-19) (v odstotkih)
@@ -249,23 +259,22 @@ zaposlenost <- read_csv("podatki/urejeni_podatki/Zaposlenost.csv",
                         locale = locale(encoding = "Windows-1250"), na=':')
 neaktivni <- read_csv("podatki/urejeni_podatki/Neaktivni.csv",
                       locale = locale(encoding = "Windows-1250"), na=':')
-prostovoljstvo <- read_csv("podatki/urejeni_podatki/Prostovoljstvo.csv",
-                           locale = locale(encoding = "Windows-1250"), na=':')
-religija <- read_csv("podatki/urejeni_podatki/Religija.csv",
-                     locale = locale(encoding = "Windows-1250"), na=':')
+#prostovoljstvo <- read_csv("podatki/urejeni_podatki/Prostovoljstvo.csv",
+#                           locale = locale(encoding = "Windows-1250"), na=':')
+#religija <- read_csv("podatki/urejeni_podatki/Religija.csv",
+#                     locale = locale(encoding = "Windows-1250"), na=':')
 
 # primerjave
 # (kar je za vec let)
 #velika_tabela <- drzave %>% merge(drzavljani) %>% merge(mladi) %>%
-#  merge(izobrazba) %>% merge(neformalno) %>% merge(neaktivni)
+#  merge(izobrazba) %>% merge(zaposlenost) %>% merge(neformalno) %>% merge(neaktivni)
 # (kar je samo za 2006)
 #mala_tabela <- merge(religija, prostovoljstvo)
-# zaposlenost ne deluje
 
 #write.csv(velika_tabela,"podatki/urejeni_podatki/Velika_tabela.csv",row.names=FALSE)
 velika_tabela <- read_csv("podatki/urejeni_podatki/Velika_tabela.csv",
                           locale = locale(encoding = "Windows-1250"), na=':')
 #write.csv(mala_tabela,"podatki/urejeni_podatki/Mala_tabela.csv",row.names=FALSE)
-mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
-                          locale = locale(encoding = "Windows-1250"), na=':')
+#mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
+#                          locale = locale(encoding = "Windows-1250"), na=':')
 

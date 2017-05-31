@@ -1,1 +1,228 @@
-"leto","drzava","spol","starost","izobrazenost","zaposlenost","izobrazba"
+"leto","drzava","zaposlenost"
+2008,"Austria",2969.1
+2008,"Belgium",1907.4
+2008,"Bulgaria",1616.3
+2008,"Croatia",1060.5
+2008,"Cyprus",174.2
+2008,"Czech Republic",2824.3
+2008,"Denmark",1919.1
+2008,"Estonia",371.4
+2008,"Finland",1550.4
+2008,"Former Yugoslav Republic of Macedonia, the",353
+2008,"France",11759.7
+2008,"Germany",23940
+2008,"Greece",2190.4
+2008,"Hungary",1923.3
+2008,"Ireland",1292.6
+2008,"Italy",10749.8
+2008,"Latvia",639.3
+2008,"Malta",137.5
+2008,"Netherlands",5806.2
+2008,"Norway",1532.5
+2008,"Poland",9394.1
+2008,"Portugal",2705.2
+2008,"Romania",5355.9
+2008,"Slovenia",613.9
+2008,"Spain",10458.5
+2008,"Sweden",2493.7
+2008,"Switzerland",2714.5
+2008,"Turkey",19245.7
+2008,"United Kingdom",17450
+2009,"Austria",2894.3
+2009,"Belgium",1801.1
+2009,"Croatia",1007.2
+2009,"Cyprus",172
+2009,"Czech Republic",2591.4
+2009,"Denmark",1830.8
+2009,"Euro area",219605.3
+2009,"European Union",318626.1
+2009,"Finland",1392.4
+2009,"Former Yugoslav Republic of Macedonia, the",341.4
+2009,"France",11285.9
+2009,"Germany",23298.4
+2009,"Greece",2086.5
+2009,"Ireland",1013.1
+2009,"Italy",9799
+2009,"Malta",132.7
+2009,"Netherlands",5689.6
+2009,"Norway",1461.6
+2009,"Poland",8744.7
+2009,"Portugal",2445.6
+2009,"Romania",5034.2
+2009,"Slovenia",549.8
+2009,"Spain",8389.7
+2009,"Sweden",2333.1
+2009,"Switzerland",2704.6
+2009,"Turkey",18426.6
+2009,"United Kingdom",16144.4
+2010,"Austria",2883.4
+2010,"Belgium",1782.5
+2010,"Cyprus",172.5
+2010,"Czech Republic",2406.5
+2010,"Denmark",1739.5
+2010,"Finland",1390.8
+2010,"Former Yugoslav Republic of Macedonia, the",322.7
+2010,"France",11117.4
+2010,"Germany",22414.8
+2010,"Greece",1835.6
+2010,"Ireland",857.2
+2010,"Italy",9277.8
+2010,"Malta",127.9
+2010,"Netherlands",5408.6
+2010,"Norway",1444.6
+2010,"Poland",8109.4
+2010,"Portugal",2193.5
+2010,"Romania",4207.2
+2010,"Slovenia",525.5
+2010,"Spain",7409.6
+2010,"Sweden",2389.9
+2010,"Switzerland",2734.3
+2010,"Turkey",19065.6
+2010,"United Kingdom",15605.8
+2011,"Austria",2925.6
+2011,"Belgium",1837.7
+2011,"Czech Republic",2273.4
+2011,"Denmark",1713.9
+2011,"Estonia",300.5
+2011,"Euro area",201702.5
+2011,"European Union",292589.3
+2011,"Finland",1426.5
+2011,"Former Yugoslav Republic of Macedonia, the",303.8
+2011,"France",10906.5
+2011,"Germany",22368.7
+2011,"Greece",1445.1
+2011,"Ireland",768.7
+2011,"Italy",8970.7
+2011,"Malta",125.2
+2011,"Netherlands",5272.3
+2011,"Norway",1467.5
+2011,"Poland",7536.7
+2011,"Portugal",2033.3
+2011,"Romania",3989.6
+2011,"Slovenia",477.2
+2011,"Spain",6556
+2011,"Sweden",2532.4
+2011,"Switzerland",2785
+2011,"Turkey",19840.6
+2011,"United Kingdom",15292.9
+2012,"Austria",2894.3
+2012,"Belgium",2005.8
+2012,"Czech Republic",2156.4
+2012,"Denmark",1653.1
+2012,"Finland",1439
+2012,"Former Yugoslav Republic of Macedonia, the",295.8
+2012,"France",10405.3
+2012,"Germany",21731.4
+2012,"Greece",1128.2
+2012,"Ireland",707.2
+2012,"Italy",8546.3
+2012,"Malta",123.1
+2012,"Netherlands",5240.5
+2012,"Norway",1507.9
+2012,"Poland",7210.5
+2012,"Portugal",1787.8
+2012,"Romania",3977.4
+2012,"Slovenia",418.6
+2012,"Spain",5445.8
+2012,"Sweden",2470.2
+2012,"Switzerland",2742.9
+2012,"Turkey",19241.6
+2012,"United Kingdom",15131.1
+2013,"Austria",2831.3
+2013,"Belgium",1734.5
+2013,"Czech Republic",2104.4
+2013,"Denmark",1643.3
+2013,"Euro area",182888.9
+2013,"European Union",270860.9
+2013,"Finland",1409.5
+2013,"Former Yugoslav Republic of Macedonia, the",309.1
+2013,"France",9946.3
+2013,"Germany",21637.9
+2013,"Greece",942
+2013,"Ireland",678.9
+2013,"Italy",7649.6
+2013,"Malta",126.8
+2013,"Netherlands",5076.3
+2013,"Norway",1491.1
+2013,"Poland",6834.5
+2013,"Portugal",1621.3
+2013,"Romania",3884.4
+2013,"Slovenia",380.1
+2013,"Spain",4914.7
+2013,"Sweden",2482.3
+2013,"Switzerland",2690.3
+2013,"Turkey",19315.2
+2013,"United Kingdom",15121.5
+2014,"Austria",2301.5
+2014,"Belgium",1649.1
+2014,"Czech Republic",2139.4
+2014,"Denmark",1681.6
+2014,"Finland",1379.7
+2014,"Former Yugoslav Republic of Macedonia, the",309.3
+2014,"France",9870
+2014,"Germany",22151.4
+2014,"Greece",1002.1
+2014,"Hungary",1783.7
+2014,"Italy",7362.2
+2014,"Malta",124.5
+2014,"Netherlands",5041.4
+2014,"Norway",1410.7
+2014,"Poland",6798.4
+2014,"Portugal",1609.5
+2014,"Romania",3906
+2014,"Slovenia",371.2
+2014,"Spain",4789.2
+2014,"Sweden",2521.4
+2014,"Switzerland",2669.4
+2014,"Turkey",19642.6
+2014,"United Kingdom",15374.6
+2015,"Austria",2267.7
+2015,"Belgium",1661.4
+2015,"Czech Republic",2145.8
+2015,"Denmark",1753.9
+2015,"Euro area",180391.9
+2015,"European Union",270705.5
+2015,"Finland",1348.1
+2015,"Former Yugoslav Republic of Macedonia, the",299.2
+2015,"France",9894.5
+2015,"Germany",21772.9
+2015,"Greece",1024.6
+2015,"Hungary",1872.9
+2015,"Italy",7341.2
+2015,"Malta",120.6
+2015,"Netherlands",5217.7
+2015,"Norway",1439.7
+2015,"Poland",6722.8
+2015,"Portugal",1594.5
+2015,"Romania",4038.1
+2015,"Slovenia",376.2
+2015,"Spain",4781.8
+2015,"Sweden",2537.4
+2015,"Switzerland",2631.8
+2015,"Turkey",19397
+2015,"United Kingdom",15533.2
+2016,"Austria",2268.2
+2016,"Belgium",1701
+2016,"Czech Republic",2109.2
+2016,"Denmark",1805.8
+2016,"Estonia",301.6
+2016,"Euro area",15
+2016,"European Union",56.1
+2016,"Finland",1365.6
+2016,"Former Yugoslav Republic of Macedonia, the",292.9
+2016,"France",9740.7
+2016,"Germany",22277.6
+2016,"Hungary",2139.3
+2016,"Italy",7552.5
+2016,"Malta",119.6
+2016,"Netherlands",5273.3
+2016,"Norway",1394.2
+2016,"Poland",7097.7
+2016,"Portugal",1613.5
+2016,"Romania",3844.7
+2016,"Slovenia",356.4
+2016,"Spain",4796.1
+2016,"Sweden",2551.7
+2016,"Switzerland",2597.4
+2016,"Turkey",18953.4
+2016,"United Kingdom",15960.4

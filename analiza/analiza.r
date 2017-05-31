@@ -1,10 +1,10 @@
 # 4. faza: Analiza podatkov
 
-podatki <- obcine %>% transmute(obcina, povrsina, gostota,
-                                gostota.naselij = naselja/povrsina) %>%
-  left_join(povprecja, by = "obcina")
-row.names(podatki) <- podatki$obcina
-podatki$obcina <- NULL
+podatki <- velika_tabela %>% transmute(drzava, drzavljani, mladi,
+                                nekaj = zaposlenost+izobrazba+neformalno+neaktivni) %>%
+  left_join(drzava, by = "leto")
+row.names(podatki) <- podatki$drzava
+podatki$drzava <- NULL
 
 # Število skupin
 n <- 5

@@ -32,11 +32,11 @@ source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 
 Uvozil sem podatke o mladih v obliki CSV z Eurostata ter v obliki HTML
-z Eurostata. Poglejmo si začetke nekaterih uvoženih razpredelnic. Tabele, ki jih ima: Države, Državljani, Mladi, Izobrazba, Neaktivni, Neformalno, Prostovoljstvo, Religija, Zaposlenost.
+z Eurostata. Poglejmo si začeek združene razpredelnice. Tabele, ki jih ima: Države, Državljani, Mladi, Izobrazba, Neaktivni, Neformalno, Prostovoljstvo.
 
 ```{r razpredelnice}
-kable(head(drzave))
-head(mladi)
+kable(head(velika_tabela))
+#head(mala_tabela)
 ```
 
 ***
