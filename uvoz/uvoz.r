@@ -4,6 +4,7 @@ library(rvest)
 library(gsubfn)
 library(readr)
 library(dplyr)
+source("lib/uvozi.zemljevid.r", encoding = "UTF-8")
 
 # Funkcija, ki uvozi podatke o BDP-jih držav (v EUR na osebo)
 uvozi.drzave <- function() {
@@ -279,6 +280,5 @@ religija <- read_csv("podatki/urejeni_podatki/Religija.csv",
 velika_tabela <- read_csv("podatki/urejeni_podatki/Velika_tabela.csv",
                           locale = locale(encoding = "Windows-1250"), na=':')
 #write.csv(mala_tabela,"podatki/urejeni_podatki/Mala_tabela.csv",row.names=FALSE)
-mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
-                          locale = locale(encoding = "Windows-1250"), na=':')
-
+#mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
+#                          locale = locale(encoding = "Windows-1250"), na=':'))

@@ -36,7 +36,6 @@ z Eurostata. Poglejmo si začeek združene razpredelnice. Tabele, ki jih ima: Dr
 
 ```{r razpredelnice}
 kable(head(velika_tabela))
-#head(mala_tabela)
 ```
 
 ***
