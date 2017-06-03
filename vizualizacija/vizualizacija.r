@@ -15,31 +15,34 @@ zemljevid <- uvozi.zemljevid("http://ec.europa.eu/eurostat/cache/GISCO/geodatafi
                              "NUTS_2013_10M_SH/data/NUTS_RG_10M_2013", encoding = "UTF-8") %>%
   pretvori.zemljevid() %>% filter(STAT_LEVL_ == 0) %>% filter(NUTS_ID != 'TR')
 zemljevid$NUTS_ID <- gsub("^([^0-9]*)", "\\1", zemljevid$NUTS_ID, ignore.case=TRUE)
-zemljevid$NUTS_ID <- factor(zemljevid$NUTS_ID)
+#zemljevid$NUTS_ID <- factor(zemljevid$NUTS_ID)
 imena$NUTS_ID <- factor(imena$NUTS_ID)
 zemljevid <- zemljevid %>% merge(imena)
 #zemljevid$imena <- factor(zemljevid$imena)
 colnames(zemljevid)[12] <- 'drzava'
 
-zemljevid.evrope <- function(n){
-  drzAve <- drzave %>% mutate(drzava = parse_factor(drzava, levels(zemljevid$NUTS_ID)))
-  drzAve.norm <- drzAve %>% select(-drzava) %>% scale()
+zemljevid.evrope <- function(n, tabela){
+  drzAve <- tabela %>% filter(leto==2016) %>% mutate(drzava = parse_factor(drzava, levels(zemljevid$NUTS_ID)))
+  drzAve.norm <- drzAve %>% select(-drzava, -leto) %>% scale()
   rownames(drzAve.norm) <- drzAve$drzava
   k <- kmeans(drzAve.norm, n, nstart = 1000)  
   k$tot.withinss
   skupine <- data.frame(drzava = drzAve$drzava, skupina = factor(k$cluster))
   table(k$cluster)
+  print(ggplot() + geom_polygon(data = zemljevid %>% left_join(skupine, by = c("drzava" = "drzava")),
+                                aes(x = long, y = lat, group = group, fill = skupina)) +
+          ggtitle("BDP per capita") + xlab("long") + ylab("lat") +
+      coord_quickmap(xlim = c(-25, 40), ylim = c(32, 72)))
+  return(k$size)
 }
+zemljevid.evrope(5, drzave)
 
-z <- ggplot() + geom_polygon(data = zemljevid %>% left_join(velika_tabela %>% filter(leto==2015)), aes(x = long, y = lat, group = group, fill=zaposlenost), color='red') +
-  coord_quickmap(xlim = c(-25, 40), ylim = c(32, 72))
-print(z)
+#z <- ggplot() + geom_polygon(data = zemljevid %>% left_join(velika_tabela %>% filter(leto==2015)),
+#                             aes(x = long, y = lat, group = group, fill=zaposlenost), color='black') +
+#  coord_quickmap(xlim = c(-25, 40), ylim = c(32, 72))
+#print(z)
 
-#zemljevid$NUTS_ID <- factor(zemljevid$NUTS_ID, levels = levels(drzave$drzava))
-#zemljevid <- pretvori.zemljevid(zemljevid)
-
-# Izračunamo povprečno velikost družine
-#povprecja <- druzine %>% group_by(obcina) %>%
+#povprecja <- drzave %>% group_by(obcina) %>%
 #  summarise(povprecje = sum(velikost.druzine * stevilo.druzin) / sum(stevilo.druzin))
 
 a <- ggplot(drzave %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
@@ -72,7 +75,7 @@ d <- ggplot(izobrazba %>% filter(drzava == 'Hungary' | drzava == 'France' | drza
                                     drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=izobrazba, color = drzava) +
   geom_line() + ggtitle("Izobrazba")
-#print(d)
+print(d)
 
 e <- ggplot(neformalno %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                drzava == 'United Kingdom' | drzava == 'Italy' |
@@ -121,7 +124,7 @@ j <- ggplot(graf1 %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava =
                                         drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=BDPpc, y = drzavljani, color = drzava, size = leto) +
   geom_point() + ggtitle("graf1")
-#print(j)
+print(j)
 
 
 

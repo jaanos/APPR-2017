@@ -117,10 +117,10 @@ uvozi.neformalno <- function() {
 # Funkcija, ki uvozi podatke o zaposlenosti (v odstotkih)
 uvozi.zaposlenost <- function() {
   data <- read_csv("podatki/yth_empl_010_1_Data.csv",
-                   locale = locale(encoding = "Windows-1250"), skip=1, na=':')
+                   locale = locale(encoding = "Windows-1250"), na=':')
   names(data) <- c("leto", 'drzava', 'spol', 'starost', 'enota', 'izobrazenost', 'zaposlenost')
-  izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[!izbris,]
+  izbris <- data$drzava != data$drzava[grep("Euro", data$drzava, ignore.case=TRUE)]
+  data <- data[izbris,]
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
   izbris2 <- data$enota != data$enota[grep("Percentage", data$enota, ignore.case=TRUE)]
   data <- data[izbris2,]

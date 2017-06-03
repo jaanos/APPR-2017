@@ -32,7 +32,7 @@ source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 
 Uvozil sem podatke o mladih v obliki CSV z Eurostata ter v obliki HTML
-z Eurostata. Poglejmo si začeek združene razpredelnice. Tabele, ki jih ima: Države, Državljani, Mladi, Izobrazba, Neaktivni, Neformalno, Prostovoljstvo.
+z Eurostata. Poglejmo si začetek razpredelnice, kjer sem za lažji pregled združil vse podatke.
 
 ```{r razpredelnice}
 kable(head(velika_tabela))
@@ -46,13 +46,13 @@ kable(head(velika_tabela))
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
-Slika \ref{fig:zemljevid} prikazuje povprečno velikost družine za vsako občino.
+Slika \ref{fig:zemljevid} prikazuje višino BDP per capita.
 
 ```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-ggplot() + geom_polygon(data = zemljevid,
-                        aes(x = long, y = lat, group= group, color = NUTS_ID)) +
-  ggtitle("obravnavane države") + xlab("long") + ylab("lat") + coord_quickmap(xlim = c(-25, 40), ylim = c(32, 72)) +
-  guides(fill = guide_colorbar(title = "Povprečje"))
+#ggplot() + geom_polygon(data = zemljevid,
+#                        aes(x = long, y = lat, group= group, color = NUTS_ID)) +
+#  ggtitle("obravnavane države") + xlab("long") + ylab("lat") + coord_quickmap(xlim = c(-25, 40), ylim = c(32, #72)) +
+#  guides(fill = guide_colorbar(title = "Povprečje"))
 ```
 
 ***
@@ -78,5 +78,5 @@ Slika \ref{fig:graf} prikazuje povezavo med številom naselij in površino obči
 ***
 
 ```{r shiny, echo = FALSE}
-#shinyAppDir("shiny", options=list(width="100%", height=600))
+shinyAppDir("shiny", options=list(width="100%", height=600))
 ```
