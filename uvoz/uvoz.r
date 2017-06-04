@@ -11,15 +11,11 @@ uvozi.drzave <- function() {
   data <- read_csv("podatki/nama_10_pc_1_Data.csv",
                     locale = locale(encoding = "Windows-1250"))
   names(data) <- c("leto", 'drzava', 'enota', 'BDP', 'BDPpc')
-  izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[!izbris,]
+  data <- data %>% filter(! grepl("^Euro", drzava, ignore.case=TRUE),
+                          grepl("Current prices, euro per capita", enota, ignore.case=TRUE),
+                          grepl("Gross domestic product at market prices", BDP, ignore.case=TRUE)) %>%
+    select(-enota, -BDP)
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  izbris2 <- data$enota == data$enota[grep("Current prices, euro per capita", data$enota, ignore.case=TRUE)]
-  data <- data[izbris2,]
-  izbris3 <- data$BDP == data$BDP[grep("Gross domestic product at market prices", data$BDP, ignore.case=TRUE)]
-  data <- data[izbris3,]
-  data$enota <- NULL
-  data$BDP <- NULL
   data$BDPpc <- parse_number(data$BDPpc, na=c(NA, ":"))
   return(data)
 }
@@ -30,13 +26,10 @@ uvozi.drzave <- function() {
 uvozi.drzavljani <- function() {
   data <- read_csv("podatki/nama_10_pe_1_Data.csv", locale = locale(encoding = "UTF-8"))
   colnames(data) <- c("leto", 'drzava', 'enota', 'Skupno', 'drzavljani')
-  izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[!izbris,]
+  data <- data %>% filter(! grepl("^Euro", drzava, ignore.case=TRUE),
+                          grepl("Thousand persons", enota, ignore.case=TRUE)) %>%
+    select(-enota, -Skupno)
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  izbris2 <- data$enota == data$enota[grep("Thousand persons", data$enota, ignore.case=TRUE)]
-  data <- data[izbris2,]
-  data$enota <- NULL
-  data$Skupno <- NULL
   data$drzavljani <- parse_number(data$drzavljani, na=c(NA, ":"))
   return(data)
 }
@@ -48,16 +41,10 @@ uvozi.mladi <- function() {
   data <- read_csv("podatki/yth_demo_010_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"), na=':')
   names(data) <- c("leto", 'drzava', 'Skupno','enota', 'starost', 'mladi', 'komentarji')
-  izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[!izbris,]
+  data <- data %>% filter(! grepl("^Euro", drzava, ignore.case=TRUE),
+                          grepl("Total", Skupno, ignore.case=TRUE)) %>%
+    select(-enota, -Skupno, -komentarji)
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  data$starost <- gsub("From 15 to 29 years", "15 do 29", data$starost, ignore.case=TRUE)
-  data$starost <- gsub("Less than 15 years", "do 15", data$starost, ignore.case=TRUE)
-  izbris2 <- data$Skupno == data$Skupno[grep("Total", data$Skupno, ignore.case=TRUE)]
-  data <- data[izbris2,]
-  data$Skupno <- NULL
-  data$enota <- NULL
-  data$komentarji <- NULL
   data$mladi <- parse_number(data$mladi, na=c(NA, ":"))
   data <- na.omit(data)
   data <- data %>% 
@@ -77,15 +64,10 @@ uvozi.mladi <- function() {
 uvozi.izobrazba <- function() {
   data <- read_csv("podatki/yth_demo_040_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"), na=':')
-  names(data) <- c("leto", 'drzava', 'izobrazba', 'spol', 'starost', 'enota', 'izobrazba', 'komentarji')
-  izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[!izbris,]
+  names(data) <- c("leto", 'drzava', 'izobrazenost', 'spol', 'starost', 'enota', 'izobrazba', 'komentarji')
+  data <- data %>% filter(! grepl("^Euro", drzava, ignore.case=TRUE)) %>%
+    select(-enota, -komentarji, -spol, -starost, -izobrazenost)
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  data$enota <- NULL
-  data$spol <- NULL
-  data$starost <- NULL
-  data$izobrazba <- NULL
-  data$komentarji <- NULL
   return(data)
 }
 #izobrazba <- uvozi.izobrazba()
@@ -97,14 +79,10 @@ uvozi.neformalno <- function() {
   data <- read_csv("podatki/yth_educ_060_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"), na=':')
   names(data) <- c("leto", 'drzava', 'enota', 'spol', 'starost', 'neformalno', 'komentarji')
-  izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[!izbris,]
+  data <- data %>% filter(! grepl("^Euro", drzava, ignore.case=TRUE),
+                          grepl("Total", spol, ignore.case=TRUE)) %>%
+    select(-enota, -komentarji, -starost)
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  izbris2 <- data$spol != data$spol[grep("Total", data$spol, ignore.case=TRUE)]
-  data <- data[izbris2,]
-  data$enota <- NULL
-  data$komentarji <- NULL
-  data$starost <- NULL
   data$neformalno <- parse_number(data$neformalno, na=c(NA, ":"))
   data <- data %>% 
     group_by(leto, drzava) %>% 
@@ -119,10 +97,8 @@ uvozi.zaposlenost <- function() {
   data <- read_csv("podatki/yth_empl_030_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"), na=':')
   names(data) <- c("leto", 'drzava', 'spol', 'starost', 'enota', 'zaposlenost')
+  data <- data %>% select(-enota, -spol, -starost)
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  data$enota <- NULL
-  data$spol <- NULL
-  data$starost <- NULL
   data$zaposlenost <- parse_number(data$zaposlenost, na=c(NA, ":"))
   data <- data %>% 
     group_by(leto, drzava) %>% 
@@ -137,16 +113,9 @@ uvozi.neaktivni <- function() {
   data <- read_csv("podatki/yth_empl_160_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"), skip=1, na=':')
   names(data) <- c("leto", 'drzava', 'spol', 'starost', 'zaposlen', 'Neaktivnost', 'izobrazba', 'enota', 'neaktivni', 'komentarji')
-  izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[!izbris,]
+  data <- data %>% filter(! grepl("^Euro", drzava, ignore.case=TRUE)) %>%
+    select(-enota, -komentarji, -starost, -zaposlen, -spol, -Neaktivnost, -izobrazba)
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  data$enota <- NULL
-  data$starost <- NULL
-  data$komentarji <- NULL
-  data$zaposlen <- NULL
-  data$spol <- NULL
-  data$Neaktivnost <- NULL
-  data$izobrazba <- NULL
   return(data)
 }
 #neaktivni <- uvozi.neaktivni()
@@ -158,12 +127,10 @@ uvozi.religija <- function() {
   data <- read_csv("podatki/yth_part_030_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"), na=':')
   names(data) <- c("starost", 'drzava', 'enota', 'spol', 'leto', 'DA_NE', 'religija')
-  izbris <- data$drzava == data$drzava[grep("^Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[!izbris,]
+  data <- data %>% filter(! grepl("^Euro", drzava, ignore.case=TRUE),
+                          grepl("Total", spol, ignore.case=TRUE)) %>%
+    select(-enota, -DA_NE, -leto)
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  izbris2 <- data$spol != data$spol[grep("Total", data$spol, ignore.case=TRUE)]
-  data <- data[izbris2,]
-  data$starost <- gsub("[^0-9]*([0-9]+)[^0-9]*([0-9]+)[^0-9]*", "\\1 - \\2", data$starost, ignore.case=TRUE)
   data$enota <- NULL
   data$DA_NE <- NULL
   data$leto <- NULL
@@ -179,52 +146,61 @@ uvozi.religija <- function() {
 # Funkcija, ki uvozi podatke o prostovoljstvu (v odstotkih za 2006)
 uvozi.prostovoljstvo <- function() {
   stran <- 'podatki/yth_volunt_010.html' %>% read_html()
-  moski <- stran %>% html_nodes(xpath="//table") %>%
-    .[[2]] %>% html_table(dec = ".")
-  colnames(moski) <- c("drzava", "od16do29", "od20do29", "od16do19", "od16do24",
-                        "od20do24", "od25do29")
-  izbris <- moski$drzava == moski$drzava[grep("^Euro", moski$drzava, ignore.case=TRUE)]
-  moski <- moski[!izbris,]
-  moski <- moski[-28,]
-  moski$drzava <- gsub(" \\(.*\\)$", "", moski$drzava, ignore.case=TRUE)
-  moski$spol <- 'males'
-  zenske <- stran %>% html_nodes(xpath="//table") %>%
-    .[[3]] %>% html_table(dec = ".")
-  colnames(zenske) <- c("drzava", "od16do29", "od20do29", "od16do19", "od16do24",
-                        "od20do24", "od25do29")
-  izbris <- zenske$drzava == zenske$drzava[grep("^Euro", zenske$drzava, ignore.case=TRUE)]
-  zenske <- zenske[!izbris,]
-  zenske <- zenske[-28,]
-  zenske$drzava <- gsub(" \\(.*\\)$", "", zenske$drzava, ignore.case=TRUE)
-  zenske$spol <- 'females'
-  moski$od16do29 <- NULL
-  moski$od20do29 <- NULL
-  moski$od16do24 <- NULL
-  zenske$od16do29 <- NULL
-  zenske$od20do29 <- NULL
-  zenske$od16do24 <- NULL
-  tabela <- rbind(moski, zenske)
-  for (col in c("od16do19", "od20do24", "od25do29")) {
-    tabela[[col]] <- parse_number(tabela[[col]], na = "-")
-  }
-  for (col in c("drzava", "spol")) {
-    tabela[[col]] <- factor(tabela[[col]])
-  }
-  a <- tabela[c(1,2,5)]
-  names(a)[2] <- 'prostovoljstvo'
-  a$starost <- '16-19'
-  b <- tabela[c(1,3,5)]
-  names(b)[2] <- 'prostovoljstvo'
-  b$starost <- '20-24'
-  c <- tabela[c(1,4,5)]
-  names(c)[2] <- 'prostovoljstvo'
-  c$starost <- '25-29'
-  tabela <- rbind(a, b, c)
-  tabela$prostovoljstvo <- parse_number(tabela$prostovoljstvo, na=c(NA, ":"))
-  tabela <- tabela %>% 
-    group_by(drzava) %>% 
-    summarise(prostovoljstvo = sum(prostovoljstvo))
-  return(tabela)
+  data <- stran %>% html_nodes(xpath="//table") %>%
+    .[[1]] %>% html_table(dec = ".")
+  colnames(data) <- c("drzava", "prostovoljstvo", "od20do29", "od16do19", "od16do24",
+                       "od20do24", "od25do29")
+  data <- data %>% filter(! grepl("^Euro", drzava, ignore.case=TRUE)) %>%
+    select(-c(3, 4, 5, 6, 7))
+  data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
+  data <- data[-28,]
+  data$prostovoljstvo <- parse_double(data$prostovoljstvo)
+  #moski <- stran %>% html_nodes(xpath="//table") %>%
+  #  .[[2]] %>% html_table(dec = ".")
+  #colnames(moski) <- c("drzava", "od16do29", "od20do29", "od16do19", "od16do24",
+  #                      "od20do24", "od25do29")
+  #izbris <- moski$drzava == moski$drzava[grep("^Euro", moski$drzava, ignore.case=TRUE)]
+  #moski <- moski[!izbris,]
+  #moski <- moski[-28,]
+  #moski$drzava <- gsub(" \\(.*\\)$", "", moski$drzava, ignore.case=TRUE)
+  #moski$spol <- 'males'
+  #  .[[3]] %>% html_table(dec = ".")
+  #  moski$drzava <- gsub(" \\(.*\\)$", "", moski$drzava, ignore.case=TRUE)zenske <- stran %>% html_nodes(xpath="//table") %>%
+  #colnames(zenske) <- c("drzava", "od16do29", "od20do29", "od16do19", "od16do24",
+  #                      "od20do24", "od25do29")
+  #izbris <- zenske$drzava == zenske$drzava[grep("^Euro", zenske$drzava, ignore.case=TRUE)]
+  #zenske <- zenske[!izbris,]
+  #zenske <- zenske[-28,]
+  #zenske$drzava <- gsub(" \\(.*\\)$", "", zenske$drzava, ignore.case=TRUE)
+  #zenske$spol <- 'females'
+  #moski$od16do29 <- NULL
+  #moski$od20do29 <- NULL
+  #moski$od16do24 <- NULL
+  #zenske$od16do29 <- NULL
+  #zenske$od20do29 <- NULL
+  #zenske$od16do24 <- NULL
+  #tabela <- rbind(moski, zenske)
+  #for (col in c("od16do19", "od20do24", "od25do29")) {
+  #  tabela[[col]] <- parse_number(tabela[[col]], na = "-")
+  #}
+  #for (col in c("drzava", "spol")) {
+  #  tabela[[col]] <- factor(tabela[[col]])
+  #}
+  #a <- tabela[c(1,2,5)]
+  #names(a)[2] <- 'prostovoljstvo'
+  #a$starost <- '16-19'
+  #b <- tabela[c(1,3,5)]
+  #names(b)[2] <- 'prostovoljstvo'
+  #a$starost <- '20-24'
+  #c <- tabela[c(1,4,5)]
+  #names(c)[2] <- 'prostovoljstvo'
+  #c$starost <- '25-29'
+  #tabela <- rbind(a, b, c)
+  #tabela$prostovoljstvo <- parse_number(tabela$prostovoljstvo, na=c(NA, ":"))
+  #tabela <- tabela %>% 
+  #  group_by(drzava) %>% 
+  #  summarise(prostovoljstvo = sum(prostovoljstvo))
+  return(data)
 }
 #prostovoljstvo <- uvozi.prostovoljstvo()
 
@@ -273,4 +249,4 @@ velika_tabela <- read_csv("podatki/urejeni_podatki/Velika_tabela.csv",
                           locale = locale(encoding = "Windows-1250"), na=':')
 #write.csv(mala_tabela,"podatki/urejeni_podatki/Mala_tabela.csv",row.names=FALSE)
 #mala_tabela <- read_csv("podatki/urejeni_podatki/Mala_tabela.csv",
-#                          locale = locale(encoding = "Windows-1250"), na=':'))
+#                          locale = locale(encoding = "Windows-1250"), na=':')

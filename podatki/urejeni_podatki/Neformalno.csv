@@ -1,303 +1,296 @@
 "leto","drzava","neformalno"
-"2008","Austria",24.7
-"2008","Belgium",6.3
-"2008","Bulgaria",2.7
-"2008","Croatia",1.9
-"2008","Cyprus",58.3
-"2008","Czech Republic",13.2
-"2008","Denmark",63.9
-"2008","Estonia",10
-"2008","Finland",22.3
-"2008","Former Yugoslav Republic of Macedonia, the",5.8
-"2008","France",13.9
-"2008","Germany",6.9
-"2008","Greece",40.8
-"2008","Hungary",4.3
-"2008","Iceland",16
-"2008","Ireland",8.7
-"2008","Italy",5.9
-"2008","Latvia",5.1
-"2008","Luxembourg",6.4
-"2008","Malta",18.9
-"2008","Netherlands",7.6
-"2008","Norway",15.8
-"2008","Poland",4.3
-"2008","Portugal",6.4
-"2008","Romania",1.4
-"2008","Slovakia",3.8
-"2008","Slovenia",18.3
-"2008","Spain",40.3
-"2008","Sweden",56.4
-"2008","Switzerland",42.5
-"2008","Turkey",10.2
-"2008","United Kingdom",57.9
-"2009","Austria",55.2
-"2009","Belgium",11.2
-"2009","Bulgaria",4.8
-"2009","Croatia",4.6
-"2009","Cyprus",117.6
-"2009","Czech Republic",21.2
-"2009","Denmark",136.2
-"2009","Estonia",18.4
-"2009","Euro area",57.6
-"2009","European Union",75
-"2009","Finland",42.2
-"2009","Former Yugoslav Republic of Macedonia, the",10.6
-"2009","France",22.8
-"2009","Germany",13.8
-"2009","Greece",81
-"2009","Hungary",7.4
-"2009","Iceland",34
-"2009","Ireland",12.8
-"2009","Italy",17
-"2009","Latvia",6.6
-"2009","Lithuania",10.2
-"2009","Luxembourg",32.6
-"2009","Malta",33.6
-"2009","Netherlands",14.2
-"2009","Norway",29.2
-"2009","Poland",8.2
-"2009","Portugal",11.4
-"2009","Slovakia",5.4
-"2009","Slovenia",46
-"2009","Spain",80
-"2009","Sweden",110.2
-"2009","Turkey",22.8
-"2009","United Kingdom",114.2
-"2010","Austria",52.6
-"2010","Belgium",15
-"2010","Bulgaria",5.4
-"2010","Croatia",3.8
-"2010","Cyprus",112.6
-"2010","Czech Republic",21.6
-"2010","Denmark",138
-"2010","Estonia",19.6
-"2010","Euro area",57
-"2010","European Union",75.4
-"2010","Finland",43.2
-"2010","Former Yugoslav Republic of Macedonia, the",11.6
-"2010","France",23.6
-"2010","Germany",13.6
-"2010","Greece",73.4
-"2010","Hungary",9.6
-"2010","Iceland",41.6
-"2010","Ireland",14
-"2010","Italy",17.2
-"2010","Latvia",7.4
-"2010","Lithuania",15.2
-"2010","Luxembourg",26.4
-"2010","Malta",27.2
-"2010","Netherlands",12.8
-"2010","Norway",29.4
-"2010","Poland",9.4
-"2010","Portugal",10
-"2010","Slovakia",3.8
-"2010","Slovenia",41
-"2010","Spain",79.6
-"2010","Sweden",118.6
-"2010","Switzerland",90
-"2010","Turkey",27.4
-"2010","United Kingdom",108.8
-"2011","Austria",51.2
-"2011","Belgium",10.6
-"2011","Croatia",3.2
-"2011","Cyprus",109.8
-"2011","Czech Republic",40.8
-"2011","Denmark",137.6
-"2011","Estonia",19.4
-"2011","Euro area",58
-"2011","European Union",73
-"2011","Finland",45
-"2011","Former Yugoslav Republic of Macedonia, the",11.2
-"2011","France",23.4
-"2011","Germany",12.4
-"2011","Greece",63.2
-"2011","Hungary",8.4
-"2011","Iceland",38
-"2011","Ireland",15
-"2011","Italy",18.6
-"2011","Latvia",8.8
-"2011","Lithuania",30.8
-"2011","Luxembourg",28
-"2011","Malta",27
-"2011","Netherlands",13.4
-"2011","Norway",32.8
-"2011","Poland",7.6
-"2011","Portugal",45.4
-"2011","Romania",4.8
-"2011","Slovakia",6.4
-"2011","Slovenia",42.2
-"2011","Spain",77.6
-"2011","Sweden",115.8
-"2011","Switzerland",91.8
-"2011","Turkey",26.8
-"2011","United Kingdom",93
-"2012","Austria",56
-"2012","Belgium",11.2
-"2012","Croatia",3
-"2012","Cyprus",110.4
-"2012","Czech Republic",37
-"2012","Denmark",136
-"2012","Estonia",25.8
-"2012","Finland",49
-"2012","Former Yugoslav Republic of Macedonia, the",11.8
-"2012","France",23.8
-"2012","Germany",12.2
-"2012","Greece",55
-"2012","Hungary",8.6
-"2012","Iceland",39.6
-"2012","Ireland",16.2
-"2012","Italy",24
-"2012","Latvia",14.6
-"2012","Lithuania",28.6
-"2012","Luxembourg",27.4
-"2012","Malta",27.6
-"2012","Netherlands",14.4
-"2012","Norway",37
-"2012","Poland",7.6
-"2012","Portugal",48
-"2012","Romania",4.6
-"2012","Slovakia",3.8
-"2012","Slovenia",32.2
-"2012","Spain",79
-"2012","Sweden",121.6
-"2012","Switzerland",93
-"2012","Turkey",28
-"2012","United Kingdom",90.6
-"2013","Austria",51.8
-"2013","Belgium",9.4
-"2013","Bulgaria",5.6
-"2013","Croatia",4.4
-"2013","Cyprus",118
-"2013","Czech Republic",31.4
-"2013","Denmark",127.8
-"2013","Estonia",25
-"2013","Euro area",89.2
-"2013","European Union",94
-"2013","Finland",46.4
-"2013","Former Yugoslav Republic of Macedonia, the",6.4
-"2013","France",95.4
-"2013","Germany",11.4
-"2013","Greece",52
-"2013","Hungary",11.4
-"2013","Iceland",41.2
-"2013","Ireland",16.2
-"2013","Italy",23.4
-"2013","Latvia",14.6
-"2013","Lithuania",29.8
-"2013","Luxembourg",28.2
-"2013","Malta",28.6
-"2013","Netherlands",16.2
-"2013","Norway",36.2
-"2013","Poland",8
-"2013","Portugal",52.8
-"2013","Romania",6.8
-"2013","Slovakia",4.8
-"2013","Slovenia",39.2
-"2013","Spain",82.4
-"2013","Sweden",127
-"2013","Switzerland",94.6
-"2013","Turkey",31.6
-"2013","United Kingdom",90.6
-"2014","Austria",52.6
-"2014","Belgium",13.6
-"2014","Bulgaria",4.4
-"2014","Croatia",4.2
-"2014","Cyprus",119.6
-"2014","Czech Republic",32.6
-"2014","Denmark",118.2
-"2014","Estonia",18
-"2014","Euro area",90.4
-"2014","European Union",95.4
-"2014","Finland",48.6
-"2014","Former Yugoslav Republic of Macedonia, the",9.2
-"2014","France",99
-"2014","Germany",11.2
-"2014","Greece",47.6
-"2014","Hungary",14.4
-"2014","Iceland",39.8
-"2014","Ireland",16.2
-"2014","Italy",26.6
-"2014","Latvia",12.6
-"2014","Lithuania",31.8
-"2014","Luxembourg",28.4
-"2014","Malta",24
-"2014","Netherlands",14.6
-"2014","Norway",32.6
-"2014","Poland",9
-"2014","Portugal",55
-"2014","Romania",6
-"2014","Slovakia",6.4
-"2014","Slovenia",38.2
-"2014","Spain",74
-"2014","Sweden",127.6
-"2014","Switzerland",92.2
-"2014","Turkey",38.8
-"2014","United Kingdom",91.6
-"2015","Austria",53.4
-"2015","Belgium",12.6
-"2015","Croatia",3.8
-"2015","Cyprus",109.2
-"2015","Czech Republic",27.8
-"2015","Denmark",111.8
-"2015","Estonia",22.8
-"2015","Euro area",92
-"2015","European Union",97.6
-"2015","Finland",46.8
-"2015","Former Yugoslav Republic of Macedonia, the",7.6
-"2015","France",101
-"2015","Germany",11.2
-"2015","Greece",45.8
-"2015","Hungary",23.8
-"2015","Iceland",47.4
-"2015","Ireland",14
-"2015","Italy",25.8
-"2015","Latvia",10
-"2015","Lithuania",28
-"2015","Luxembourg",41.4
-"2015","Malta",18.8
-"2015","Netherlands",16.2
-"2015","Norway",35.6
-"2015","Poland",9
-"2015","Portugal",59.4
-"2015","Romania",21.2
-"2015","Slovakia",5.8
-"2015","Slovenia",31.6
-"2015","Spain",76.6
-"2015","Sweden",124.2
-"2015","Switzerland",98
-"2015","Turkey",30.6
-"2015","United Kingdom",89.6
-"2016","Austria",28.2
-"2016","Belgium",5.7
-"2016","Bulgaria",3.3
-"2016","Croatia",3.8
-"2016","Cyprus",53.1
-"2016","Czech Republic",14.6
-"2016","Denmark",57.9
-"2016","Estonia",19.2
-"2016","Finland",23.2
-"2016","Former Yugoslav Republic of Macedonia, the",5
-"2016","France",52
-"2016","Germany",6.2
-"2016","Greece",36.4
-"2016","Hungary",9.8
-"2016","Iceland",19.1
-"2016","Ireland",7.8
-"2016","Italy",14.2
-"2016","Latvia",6.2
-"2016","Lithuania",13.2
-"2016","Luxembourg",18.4
-"2016","Malta",9.2
-"2016","Netherlands",7.6
-"2016","Norway",17.1
-"2016","Poland",5.6
-"2016","Portugal",29.3
-"2016","Romania",9.3
-"2016","Slovakia",3.2
-"2016","Slovenia",19.9
-"2016","Spain",37.7
-"2016","Sweden",60.2
-"2016","Switzerland",47.8
-"2016","Turkey",14.2
-"2016","United Kingdom",41.1
+"2008","Austria",12.3
+"2008","Belgium",3.1
+"2008","Bulgaria",1.4
+"2008","Croatia",1
+"2008","Cyprus",29.3
+"2008","Czech Republic",6.6
+"2008","Denmark",31.9
+"2008","Estonia",5
+"2008","Finland",11.2
+"2008","Former Yugoslav Republic of Macedonia, the",2.9
+"2008","France",6.9
+"2008","Germany",3.5
+"2008","Greece",20.4
+"2008","Hungary",2.1
+"2008","Iceland",8
+"2008","Ireland",4.3
+"2008","Italy",2.9
+"2008","Latvia",2.6
+"2008","Lithuania",1.5
+"2008","Luxembourg",3.2
+"2008","Malta",9.5
+"2008","Netherlands",3.8
+"2008","Norway",7.9
+"2008","Poland",2.2
+"2008","Portugal",3.2
+"2008","Romania",0.7
+"2008","Slovakia",1.9
+"2008","Slovenia",9.1
+"2008","Spain",20.1
+"2008","Sweden",28.1
+"2008","Switzerland",21.2
+"2008","Turkey",5.1
+"2008","United Kingdom",28.9
+"2009","Austria",27.6
+"2009","Belgium",5.6
+"2009","Bulgaria",2.4
+"2009","Croatia",2.2
+"2009","Cyprus",59
+"2009","Czech Republic",10.6
+"2009","Denmark",68
+"2009","Estonia",9.2
+"2009","Finland",21.2
+"2009","Former Yugoslav Republic of Macedonia, the",5.4
+"2009","France",11.4
+"2009","Germany",7
+"2009","Greece",40.6
+"2009","Hungary",3.8
+"2009","Iceland",17
+"2009","Ireland",6.4
+"2009","Italy",8.4
+"2009","Latvia",3.4
+"2009","Lithuania",5.2
+"2009","Luxembourg",16.4
+"2009","Malta",16.8
+"2009","Netherlands",7.2
+"2009","Norway",14.6
+"2009","Poland",4.2
+"2009","Portugal",5.8
+"2009","Romania",0.6
+"2009","Slovakia",2.6
+"2009","Slovenia",22.8
+"2009","Spain",40
+"2009","Sweden",55
+"2009","Turkey",11.4
+"2009","United Kingdom",57
+"2010","Austria",26.2
+"2010","Belgium",7.4
+"2010","Bulgaria",2.6
+"2010","Croatia",1.8
+"2010","Cyprus",56.4
+"2010","Czech Republic",10.8
+"2010","Denmark",69
+"2010","Estonia",9.8
+"2010","Finland",21.6
+"2010","Former Yugoslav Republic of Macedonia, the",5.8
+"2010","France",11.8
+"2010","Germany",6.8
+"2010","Greece",36.6
+"2010","Hungary",4.8
+"2010","Iceland",20.8
+"2010","Ireland",7
+"2010","Italy",8.6
+"2010","Latvia",3.8
+"2010","Lithuania",7.6
+"2010","Luxembourg",13.2
+"2010","Malta",13.6
+"2010","Netherlands",6.4
+"2010","Norway",14.6
+"2010","Poland",4.6
+"2010","Portugal",5
+"2010","Slovakia",2
+"2010","Slovenia",20.4
+"2010","Spain",39.8
+"2010","Sweden",59.2
+"2010","Switzerland",45
+"2010","Turkey",13.6
+"2010","United Kingdom",54.4
+"2011","Austria",25.6
+"2011","Belgium",5.4
+"2011","Bulgaria",1.8
+"2011","Croatia",1.6
+"2011","Cyprus",55.2
+"2011","Czech Republic",20.4
+"2011","Denmark",68.8
+"2011","Estonia",9.6
+"2011","Finland",22.4
+"2011","Former Yugoslav Republic of Macedonia, the",5.6
+"2011","France",11.6
+"2011","Germany",6.2
+"2011","Greece",31.6
+"2011","Hungary",4.2
+"2011","Iceland",19
+"2011","Ireland",7.4
+"2011","Italy",9.2
+"2011","Latvia",4.4
+"2011","Lithuania",15.4
+"2011","Luxembourg",14
+"2011","Malta",13.4
+"2011","Netherlands",6.8
+"2011","Norway",16.4
+"2011","Poland",3.8
+"2011","Portugal",22.6
+"2011","Romania",2.4
+"2011","Slovakia",3.2
+"2011","Slovenia",21
+"2011","Spain",38.8
+"2011","Sweden",57.8
+"2011","Switzerland",45.8
+"2011","Turkey",13.4
+"2011","United Kingdom",46.4
+"2012","Austria",28
+"2012","Belgium",5.6
+"2012","Bulgaria",2.2
+"2012","Croatia",1.4
+"2012","Cyprus",55.6
+"2012","Czech Republic",18.4
+"2012","Denmark",68
+"2012","Estonia",12.8
+"2012","Finland",24.4
+"2012","Former Yugoslav Republic of Macedonia, the",5.8
+"2012","France",12
+"2012","Germany",6.2
+"2012","Greece",27.4
+"2012","Hungary",4.4
+"2012","Iceland",19.8
+"2012","Ireland",8.2
+"2012","Italy",12
+"2012","Latvia",7.2
+"2012","Lithuania",14.2
+"2012","Luxembourg",13.6
+"2012","Malta",13.8
+"2012","Netherlands",7.2
+"2012","Norway",18.6
+"2012","Poland",3.8
+"2012","Portugal",24
+"2012","Romania",2.2
+"2012","Slovakia",2
+"2012","Slovenia",16
+"2012","Spain",39.4
+"2012","Sweden",60.6
+"2012","Switzerland",46.6
+"2012","Turkey",14
+"2012","United Kingdom",45.2
+"2013","Austria",26
+"2013","Belgium",4.8
+"2013","Bulgaria",2.8
+"2013","Croatia",2.2
+"2013","Cyprus",59
+"2013","Czech Republic",15.6
+"2013","Denmark",63.8
+"2013","Estonia",12.4
+"2013","Finland",23.2
+"2013","Former Yugoslav Republic of Macedonia, the",3.2
+"2013","France",47.6
+"2013","Germany",5.8
+"2013","Greece",26
+"2013","Hungary",5.6
+"2013","Iceland",20.6
+"2013","Ireland",8
+"2013","Italy",11.6
+"2013","Latvia",7.2
+"2013","Lithuania",15
+"2013","Luxembourg",14
+"2013","Malta",14.2
+"2013","Netherlands",8
+"2013","Norway",18
+"2013","Poland",4
+"2013","Portugal",26.4
+"2013","Romania",3.4
+"2013","Slovakia",2.4
+"2013","Slovenia",19.4
+"2013","Spain",41.2
+"2013","Sweden",63.4
+"2013","Switzerland",47.2
+"2013","Turkey",15.8
+"2013","United Kingdom",45.4
+"2014","Austria",26.4
+"2014","Belgium",6.8
+"2014","Bulgaria",2.2
+"2014","Croatia",2
+"2014","Cyprus",60
+"2014","Czech Republic",16.2
+"2014","Denmark",59
+"2014","Estonia",9
+"2014","Finland",24.2
+"2014","Former Yugoslav Republic of Macedonia, the",4.6
+"2014","France",49.6
+"2014","Germany",5.6
+"2014","Greece",23.8
+"2014","Hungary",7.2
+"2014","Iceland",19.8
+"2014","Ireland",8
+"2014","Italy",13.4
+"2014","Latvia",6.4
+"2014","Lithuania",16
+"2014","Luxembourg",14.2
+"2014","Malta",12
+"2014","Netherlands",7.2
+"2014","Norway",16.4
+"2014","Poland",4.6
+"2014","Portugal",27.4
+"2014","Romania",3
+"2014","Slovakia",3.2
+"2014","Slovenia",19
+"2014","Spain",37
+"2014","Sweden",63.6
+"2014","Switzerland",46.2
+"2014","Turkey",19.4
+"2014","United Kingdom",45.8
+"2015","Austria",26.8
+"2015","Belgium",6.4
+"2015","Bulgaria",2.4
+"2015","Croatia",1.9
+"2015","Cyprus",54.6
+"2015","Czech Republic",13.8
+"2015","Denmark",55.8
+"2015","Estonia",11.4
+"2015","Finland",23.4
+"2015","Former Yugoslav Republic of Macedonia, the",3.8
+"2015","France",50.4
+"2015","Germany",5.6
+"2015","Greece",22.8
+"2015","Hungary",11.8
+"2015","Iceland",23.6
+"2015","Ireland",6.8
+"2015","Italy",13
+"2015","Latvia",5
+"2015","Lithuania",14
+"2015","Luxembourg",20.8
+"2015","Malta",9.4
+"2015","Netherlands",8.2
+"2015","Norway",17.8
+"2015","Poland",4.4
+"2015","Portugal",29.6
+"2015","Romania",10.6
+"2015","Slovakia",3
+"2015","Slovenia",15.8
+"2015","Spain",38.2
+"2015","Sweden",62
+"2015","Switzerland",49
+"2015","Turkey",15.2
+"2015","United Kingdom",44.8
+"2016","Austria",14.1
+"2016","Belgium",2.9
+"2016","Bulgaria",1.6
+"2016","Croatia",1.9
+"2016","Cyprus",26.6
+"2016","Czech Republic",7.3
+"2016","Denmark",28.9
+"2016","Estonia",9.6
+"2016","Finland",11.6
+"2016","Former Yugoslav Republic of Macedonia, the",2.5
+"2016","France",26
+"2016","Germany",3.1
+"2016","Greece",18.2
+"2016","Hungary",4.9
+"2016","Iceland",9.5
+"2016","Ireland",3.9
+"2016","Italy",7.1
+"2016","Latvia",3.1
+"2016","Lithuania",6.6
+"2016","Luxembourg",9.2
+"2016","Malta",4.6
+"2016","Netherlands",3.8
+"2016","Norway",8.6
+"2016","Poland",2.8
+"2016","Portugal",14.6
+"2016","Romania",4.6
+"2016","Slovakia",1.6
+"2016","Slovenia",10
+"2016","Spain",18.8
+"2016","Sweden",30
+"2016","Switzerland",23.9
+"2016","Turkey",7.1
+"2016","United Kingdom",20.5

@@ -26,105 +26,90 @@ zemljevid.evrope <- function(n, tabela){
   drzAve.norm <- drzAve %>% select(-drzava, -leto) %>% scale()
   rownames(drzAve.norm) <- drzAve$drzava
   k <- kmeans(drzAve.norm, n, nstart = 1000)  
-  k$tot.withinss
+  #k$tot.withinss
   skupine <- data.frame(drzava = drzAve$drzava, skupina = factor(k$cluster))
-  table(k$cluster)
+  #table(k$cluster)
   print(ggplot() + geom_polygon(data = zemljevid %>% left_join(skupine, by = c("drzava" = "drzava")),
                                 aes(x = long, y = lat, group = group, fill = skupina)) +
           ggtitle("BDP per capita") + xlab("long") + ylab("lat") +
       coord_quickmap(xlim = c(-25, 40), ylim = c(32, 72)))
   return(k$size)
 }
-zemljevid.evrope(5, drzave)
+zemljevid1 <- zemljevid.evrope(5, drzave)
 
-#z <- ggplot() + geom_polygon(data = zemljevid %>% left_join(velika_tabela %>% filter(leto==2015)),
-#                             aes(x = long, y = lat, group = group, fill=zaposlenost), color='black') +
-#  coord_quickmap(xlim = c(-25, 40), ylim = c(32, 72))
-#print(z)
+zemljevid2 <- ggplot() + geom_polygon(data = zemljevid %>% left_join(velika_tabela %>% filter(leto==2015)),
+                             aes(x = long, y = lat, group = group, fill=zaposlenost), color='black') +
+  coord_quickmap(xlim = c(-25, 40), ylim = c(32, 72))
 
 #povprecja <- drzave %>% group_by(obcina) %>%
 #  summarise(povprecje = sum(velikost.druzine * stevilo.druzin) / sum(stevilo.druzin))
 
-a <- ggplot(drzave %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+graf1 <- ggplot(drzave %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                 drzava == 'United Kingdom' | drzava == 'Italy' |
                                 drzava == 'Slovenia' | drzava == 'Poland' |
                                 drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=BDPpc, color = drzava) +
-  geom_line() + ggtitle("BDP")
-#print(a)
+  geom_line() + ggtitle("BDP per capita")
 
-b <- ggplot(drzavljani %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+graf2 <- ggplot(drzavljani %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                 drzava == 'United Kingdom' | drzava == 'Italy' |
                                 drzava == 'Slovenia' | drzava == 'Poland' |
                                 drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=drzavljani, color = drzava) +
-  geom_line() + ggtitle("Prebivalstvo")
-#print(b)
+  geom_line() + ggtitle("Število prebivalcev")
 
-c <- ggplot(mladi %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+graf3 <- ggplot(mladi %>% filter(drzava == 'Hungary'  | drzava == 'Sweden' |
                                     drzava == 'United Kingdom' | drzava == 'Italy' |
                                     drzava == 'Slovenia' | drzava == 'Poland' |
                                     drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=mladi, color = drzava) +
-  geom_line() + ggtitle("Mladi")
-#print(c)
+  geom_line() + ggtitle("Delež mladih (15-30 let)")
 
-d <- ggplot(izobrazba %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+graf4 <- ggplot(izobrazba %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                     drzava == 'United Kingdom' | drzava == 'Italy' |
                                     drzava == 'Slovenia' | drzava == 'Poland' |
                                     drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=izobrazba, color = drzava) +
-  geom_line() + ggtitle("Izobrazba")
-print(d)
+  geom_line() + ggtitle("delež izobraženih")
 
-e <- ggplot(neformalno %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+graf5 <- ggplot(neformalno %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                drzava == 'United Kingdom' | drzava == 'Italy' |
                                drzava == 'Slovenia' | drzava == 'Poland' |
                                drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=neformalno, color = drzava) +
   geom_line() + ggtitle("Neformalno izobraževanje")
-#print(e)
 
-f <- ggplot(zaposlenost %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+graf6 <- ggplot(zaposlenost %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                drzava == 'United Kingdom' | drzava == 'Italy' |
                                drzava == 'Slovenia' | drzava == 'Poland' |
                                drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=zaposlenost, color = drzava) +
   geom_line() + ggtitle("Zaposlenost mladih")
-#print(f)
 
-g <- ggplot(neaktivni %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+graf7 <- ggplot(neaktivni %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                      drzava == 'United Kingdom' | drzava == 'Italy' |
                                      drzava == 'Slovenia' | drzava == 'Poland' |
                                      drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=leto, y=neaktivni, color = drzava) +
   geom_line() + ggtitle("Neaktivni mladi")
-#print(g)
 
-h <- ggplot(religija %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
-                                     drzava == 'United Kingdom' | drzava == 'Italy' |
-                                     drzava == 'Slovenia' | drzava == 'Poland' |
-                                     drzava == 'Austria' | drzava == 'Croatia')) +
+graf8 <- ggplot(religija)+# %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                           #          drzava == 'United Kingdom' | drzava == 'Italy' |
+                            #         drzava == 'Slovenia' | drzava == 'Poland' |
+                             #        drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=drzava, y=religija) +
-  geom_point() + ggtitle("Versko udejstvovanje")
-#print(h)
+  geom_bar(stat = "identity") + ggtitle("Udejstvovanje v verskih organizacijah")
 
-i <- ggplot(prostovoljstvo %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
-                                     drzava == 'United Kingdom' | drzava == 'Italy' |
-                                     drzava == 'Slovenia' | drzava == 'Poland' |
-                                     drzava == 'Austria' | drzava == 'Croatia')) +
+graf9 <- ggplot(prostovoljstvo) +# %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+                                  #   drzava == 'United Kingdom' | drzava == 'Italy' |
+                                   #  drzava == 'Slovenia' | drzava == 'Poland' |
+                                    # drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=drzava, y = prostovoljstvo) +
-  geom_point() + ggtitle("Prostovoljstvo")
-#print(i)
+  geom_bar(stat = "identity") + ggtitle("Prostovoljstvo")
 
-graf1 <- merge(drzave, drzavljani)
-j <- ggplot(graf1 %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
+graf10 <- ggplot(merge(drzave, drzavljani) %>% filter(drzava == 'Hungary' | drzava == 'France' | drzava == 'Sweden' |
                                         drzava == 'United Kingdom' | drzava == 'Italy' |
                                         drzava == 'Slovenia' | drzava == 'Poland' |
                                         drzava == 'Austria' | drzava == 'Croatia')) +
   aes(x=BDPpc, y = drzavljani, color = drzava, size = leto) +
-  geom_point() + ggtitle("graf1")
-print(j)
-
-
-
+  geom_point() + ggtitle("BDP per capita in število državljanov")

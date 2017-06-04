@@ -46,16 +46,27 @@ kable(head(velika_tabela))
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
-Slika \ref{fig:zemljevid} prikazuje višino BDP per capita.
+Slika \ref{fig:zemljevid} prikazuje skupine držav glede na BDP per capita.
 
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-#ggplot() + geom_polygon(data = zemljevid,
-#                        aes(x = long, y = lat, group= group, color = NUTS_ID)) +
-#  ggtitle("obravnavane države") + xlab("long") + ylab("lat") + coord_quickmap(xlim = c(-25, 40), ylim = c(32, #72)) +
-#  guides(fill = guide_colorbar(title = "Povprečje"))
+```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='zemljevid deleža zaposlenosti mladih'}
+zemljevid1
+zemljevid2
 ```
 
 ***
+
+```{r graf_a, echo=FALSE, fig.align='center', fig.cap='BDP izbranih držav skozi čas'}
+graf1
+graf2
+graf3
+graf4
+graf5
+graf6
+graf7
+#graf8
+graf9
+graf10
+```
 
 # Napredna analiza podatkov
 
