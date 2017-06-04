@@ -116,21 +116,13 @@ uvozi.neformalno <- function() {
 
 # Funkcija, ki uvozi podatke o zaposlenosti (v odstotkih)
 uvozi.zaposlenost <- function() {
-  data <- read_csv("podatki/yth_empl_010_1_Data.csv",
+  data <- read_csv("podatki/yth_empl_030_1_Data.csv",
                    locale = locale(encoding = "Windows-1250"), na=':')
-  names(data) <- c("leto", 'drzava', 'spol', 'starost', 'enota', 'izobrazenost', 'zaposlenost')
-  izbris <- data$drzava != data$drzava[grep("Euro", data$drzava, ignore.case=TRUE)]
-  data <- data[izbris,]
+  names(data) <- c("leto", 'drzava', 'spol', 'starost', 'enota', 'zaposlenost')
   data$drzava <- gsub(" \\(.*\\)$", "", data$drzava, ignore.case=TRUE)
-  izbris2 <- data$enota != data$enota[grep("Percentage", data$enota, ignore.case=TRUE)]
-  data <- data[izbris2,]
-  izbris3 <- data$spol != data$spol[grep("Total", data$spol, ignore.case=TRUE)]
-  data <- data[izbris3,]
-  data$starost <- gsub("[^0-9]*([0-9]+)[^0-9]*([0-9]+)[^0-9]*", "\\1 do \\2", data$starost, ignore.case=TRUE)
-  izbris4 <- data$izobrazenost != data$izobrazenost[grep("^((All)|(No))", data$izobrazenost, ignore.case=TRUE)]
-  data <- data[izbris4,]
-  # data$izobrazenost <- gsub(".+\\(levels ([0-9])[^0-9]+([0-9])\\)$", "\\1-\\2", data$izobrazenost, ignore.case=TRUE)
   data$enota <- NULL
+  data$spol <- NULL
+  data$starost <- NULL
   data$zaposlenost <- parse_number(data$zaposlenost, na=c(NA, ":"))
   data <- data %>% 
     group_by(leto, drzava) %>% 
