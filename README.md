@@ -5,9 +5,9 @@ Avtor: Ana Golob
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2016/17
 
 ## Temtika
-### Analiza razvitosti slovenskih občin
+### Analiza gospodarske razvitosti slovenskih regij
 
-V seminarski nalogi bom obravnavala razvitost slovenskih občin glede na posamezne gospodarske faktorje. Podatke bom uvozila preko treh tabel:
+V seminarski nalogi bom obravnavala razvitost slovenskih regij glede na posamezne gospodarske faktorje. Podatke bom uvozila preko treh tabel:
 
 1. tabela: SPLOŠNE ZNAČILNOSTI OBČIN 
 * podatki z Wikipedije: https://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji
