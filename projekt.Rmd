@@ -1,5 +1,5 @@
 ---
-title: "Poro�ilo pri predmetu Analiza podatkov s programom R"
+title: "Poročilo pri predmetu Analiza podatkov s programom R"
 author: "Ana Golob"
 output:
   html_document: default
@@ -13,46 +13,45 @@ runtime: shiny
 ```{r setup, echo=FALSE, results='hide', message=FALSE}
 source("fontconfig.r", encoding = "UTF-8")
 
-# Uvoz vseh potrebnih knjižnic
+# Uvoz vseh potrebnih knjiĹľnic
 source("lib/libraries.r", encoding = "UTF-8")
 ```
 
 ### TEMA: Gospodarska razvitost slovenskih regij
 
-Seminarska naloga analizira razvitost slovenskih regij glede na slede�e podatke iz podro�ja gospodarstva:
+Seminarska naloga analizira razvitost slovenskih regij glede na sledeče podatke iz področja gospodarstva:
 
-* povpre�na mese�na bruto pla�a prebivalca,
+* povprečna mesečna bruto plača prebivalca,
 
-* �tevilo prebivalcev, ki so zaposleni,
+* število prebivalcev, ki so zaposleni,
 
-* �tevilo podjetij, ki obratujejo v regiji,
+* število podjetij, ki obratujejo v regiji,
 
 * prihodek
 
-* �tevilo doma�ih in tujih turistov, ki obi��ejo regijo.
+* število domačih in tujih turistov, ki obiščejo regijo.
 
 ***
 
-# Obdelava, uvoz in �i��enje podatkov
+# Obdelava, uvoz in čiščenje podatkov
 
 ```{r uvoz, echo=FALSE, message=FALSE}
 source(c("uvoz/uvoz.r"), encoding = "UTF-8")
-source(c("uvoz/uvozPod.r"), encoding = "UTF-8")
 ```
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Poglejmo si začetka obeh uvoženih razpredelnic.
+Uvozili smo podatke o obÄŤinah v obliki CSV s statistiÄŤnega urada ter v obliki HTML
+z Wikipedije. Poglejmo si zaÄŤetka obeh uvoĹľenih razpredelnic.
 
 ```{r razpredelnice}
 #kable(head(obcine))
 head(obcine)
 ```
 
-Slika \ref{fig:histogram} prikazuje porazdelitev števila naselij v občinah.
+Slika \ref{fig:histogram} prikazuje porazdelitev Ĺˇtevila naselij v obÄŤinah.
 
-```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
+```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram Ĺˇtevila naselij v obÄŤinah'}
 #ggplot(obcine, aes(x = naselja)) + geom_histogram() +
-#  ggtitle("Pogostost števila naselij") + xlab("Število naselij") + ylab("Število občin")
+#  ggtitle("Pogostost Ĺˇtevila naselij") + xlab("Ĺ tevilo naselij") + ylab("Ĺ tevilo obÄŤin")
 ```
 
 ***
@@ -63,13 +62,13 @@ Slika \ref{fig:histogram} prikazuje porazdelitev števila naselij v občinah.
 #source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
-Slika \ref{fig:zemljevid} prikazuje povprečno velikost družine za vsako občino.
+Slika \ref{fig:zemljevid} prikazuje povpreÄŤno velikost druĹľine za vsako obÄŤino.
 
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
+```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povpreÄŤnega Ĺˇtevila otrok v druĹľini'}
 #ggplot() + geom_polygon(data = left_join(zemljevid, povprecja, by = c("OB_UIME" = "obcina")),
 #                        aes(x = long, y = lat, group = group, fill = povprecje)) +
-#  ggtitle("Povprečno število otrok v družini") + xlab("") + ylab("") +
-#  guides(fill = guide_colorbar(title = "Povprečje"))
+#  ggtitle("PovpreÄŤno Ĺˇtevilo otrok v druĹľini") + xlab("") + ylab("") +
+#  guides(fill = guide_colorbar(title = "PovpreÄŤje"))
 ```
 
 ***
@@ -80,14 +79,14 @@ Slika \ref{fig:zemljevid} prikazuje povprečno velikost družine za vsako občin
 #source("analiza/analiza.r", encoding = "UTF-8")
 ```
 
-Slika \ref{fig:graf} prikazuje povezavo med številom naselij in površino občine.
+Slika \ref{fig:graf} prikazuje povezavo med Ĺˇtevilom naselij in povrĹˇino obÄŤine.
 
-```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
+```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med Ĺˇtevilom naselij in povrĹˇino obÄŤine'}
 #ggplot(inner_join(obcine, data.frame(obcina = names(skupine),
 #                                     skupina = factor(skupine)), by = "obcina")
 #, aes(x = povrsina, y = naselja, color = skupina, size = prebivalci/1000)) + geom_point() +
-#  ggtitle("Število naselij glede na površino občine") +
-#  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
+#  ggtitle("Ĺ tevilo naselij glede na povrĹˇino obÄŤine") +
+#  xlab(expression("PovrĹˇina (km"^2 * ")")) + ylab("Ĺ t. naselij") +
 #  guides(color = guide_legend(title = "Skupina"),
 #         size = guide_legend(title = "Prebivalci (* 1000)"))
 ```
