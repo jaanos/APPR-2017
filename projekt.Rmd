@@ -39,12 +39,17 @@ Seminarska naloga analizira razvitost slovenskih regij glede na sledeče podatke
 source(c("uvoz/uvoz.r"), encoding = "UTF-8")
 ```
 
-Uvozili smo podatke o obÄŤinah v obliki CSV s statistiÄŤnega urada ter v obliki HTML
-z Wikipedije. Poglejmo si zaÄŤetka obeh uvoĹľenih razpredelnic.
+Vozili smo podatke o občinah v obliki csv iz Statističnega urada in iz Wikipedije. Podatke o občinah smo nato pretvorili v podatke o regijah.
 
 ```{r razpredelnice}
-#kable(head(obcine))
-head(obcine)
+kable(head(regije))
+head(regije)
+
+kable(head(zdruzena1))
+head(zdruzena1)
+
+kable(head(zdruzena3))
+head(zdruzena3)
 ```
 
 Slika \ref{fig:histogram} prikazuje porazdelitev Ĺˇtevila naselij v obÄŤinah.
