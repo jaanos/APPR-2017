@@ -44,8 +44,8 @@ Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki 
 z Wikipedije. Poglejmo si začetka obeh uvoženih razpredelnic.
 
 ```{r razpredelnice}
-#kable(head(druzine))
-#head(obcine)
+#kable(head(obcine))
+head(obcine)
 ```
 
 Slika \ref{fig:histogram} prikazuje porazdelitev števila naselij v občinah.

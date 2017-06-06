@@ -4,7 +4,7 @@
 Encoding("UTF-8")
 library(dplyr)
 library(rvest)
-library(dplyr)
+
 library(reader)
 library(stats)
 library(tidyr)
@@ -17,14 +17,14 @@ setwd('..')
 trenutno = setwd(Sys.getenv("HOME"));
 
 
-# Funkciji, ki uvozita podatke iz datoteke druzine csv:
+# Funkcije, ki uvozijo podatke iz datoteke druzine csv:
 
 uvozi.meritve <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "meritve.csv");
   tabela <- read.csv2(fpot,
                       skip = 1,
                       header = FALSE,
-                      col.names = c("OB?INA", "VRSTA MERITVE", "LETO", "VREDNOST"),
+                      col.names = c("obcina", "vrsta meritve", "leto", "vrednost"),
                       na=c("", " ")
   )
   tabela <- tabela %>% fill(1:2)
@@ -36,10 +36,10 @@ uvozi.meritve <- function(trenutno) {
 uvozi.place <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "place.csv");
   tabela <- read.csv2(fpot,
-                      col.names = c("OB?INA","LETO","POVPRE?NA MESE?NA BRUTO PLA?A"),
+                      col.names = c("obcina","leto","povprecna mesecna bruto placa"),
                       skip = 3,
                       header = FALSE,
-                      na=c("", " ")
+                      na=c("", " ","-")
   )
   tabela <- tabela %>% fill(1) 
   vrstice.z.na <- apply(tabela, 1, function(x){any(is.na(x))})
@@ -52,8 +52,8 @@ uvozi.turizem <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "turizem.csv");
   tabela <- read.csv2(fpot,
                       skip = 4,
-                      na=c("", " "),
-                      col.names = c("OB?INA", "LETO", "PARAMETER" , "VREDNOST"),
+                      na=c("", " ","z","-"),
+                      col.names = c("obcina", "leto", "parameter" , "vrednost"),
                       header = FALSE
   )
   tabela <- tabela %>% fill(1:2)
@@ -62,21 +62,8 @@ uvozi.turizem <- function(trenutno) {
   return(tabela)  
 }
 
-
-# Klicanje zgornjih funkcij:
-
-tabela1 <- uvozi.meritve(trenutno)
-#View(tabela1)
-
-tabela2 <- uvozi.place(trenutno)
-#View(tabela2)
-
-tabela3 <- uvozi.turizem(trenutno)
-#View(tabela3)
-
-
-
 # Funkcija, ki uvozi podatke iz Wikipedije:
+
 uvozi.obcine <- function() {
   encoding = "Windows-1250"
   link <- "http://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji"
@@ -104,7 +91,36 @@ uvozi.obcine <- function() {
 }
 
 
-# Klicanje funkcije:
-obcine <- uvozi.obcine()
-#View(obcine)
+# Klicanje zgornjih funkcij:
 
+tabela1 <- uvozi.meritve(trenutno)
+tabela2 <- uvozi.place(trenutno)
+tabela3 <- uvozi.turizem(trenutno)
+obcine <- uvozi.obcine()
+View(tabela3)
+# Urejanje podatkov: Podatke o obèinah pretvorimo v podatke o regijah, ter izloèilo nepotrebne podatke.
+
+
+regije <- subset(obcine, select=c("povrsina","prebivalci","naselja","regija"))
+regije <- aggregate(cbind(povrsina, prebivalci, naselja) ~ regija, data=regije, FUN=sum)
+#View(regije)
+
+obcine <- subset(obcine, select=c("obcina","regija"))
+
+zdruzena1 <- merge(obcine,tabela1, by = "obcina") %>% subset(select =c("regija","leto","vrsta.meritve","vrednost"))
+zdruzena1 <- transform(zdruzena1, vrednost = as.integer(vrednost))
+#zdruzena1 <- zdruzena1 %>% group_by(regija,leto,vrsta.meritve) %>% summarise_each(funs(sum))
+
+
+zdruzena2 <- merge(obcine,tabela2, by = "obcina") %>% subset(select =c("regija","leto","povprecna.mesecna.bruto.placa"))
+transform(zdruzena2, povprecna.mesecna.bruto.placa = as.numeric(povprecna.mesecna.bruto.placa))
+#zdruzena2 <- zdruzena2 %>% group_by(regija,leto) %>% summarise_each(funs(mean))
+
+zdruzena3 <- merge(obcine,tabela3, by = "obcina") %>% subset(select =c("regija","leto","parameter","vrednost"))
+zdruzena3 <- transform(zdruzena3, vrednost = as.integer(vrednost))
+zdruzena3 <- zdruzena3 %>% group_by(regija,leto,parameter) %>% summarise_each(funs(sum))
+
+
+View(zdruzena1)
+# View(zdruzena2)
+View(zdruzena3)
