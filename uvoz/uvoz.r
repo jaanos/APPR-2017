@@ -1,10 +1,9 @@
 # 2. faza: Uvoz podatkov:
 
-# Knjižnjice:
+# KnjiĹľnjice:
 Encoding("UTF-8")
 library(dplyr)
 library(rvest)
-
 library(reader)
 library(stats)
 library(tidyr)
@@ -73,8 +72,8 @@ uvozi.obcine <- function() {
   colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
                         "ustanovitev", "pokrajina", "regija", "odcepitev")
   tabela$obcina <- gsub("Slovenskih", "Slov.", tabela$obcina)
-  tabela$obcina[tabela$obcina == "Kanal ob Soči"] <- "Kanal"
-  tabela$obcina[tabela$obcina == "Loški potok"] <- "Loški Potok"
+  tabela$obcina[tabela$obcina == "Kanal ob SoÄŤi"] <- "Kanal"
+  tabela$obcina[tabela$obcina == "LoĹˇki potok"] <- "LoĹˇki Potok"
   for (col in colnames(tabela)) {
     tabela[tabela[[col]] == "-", col] <- NA
   }
@@ -97,8 +96,8 @@ tabela1 <- uvozi.meritve(trenutno)
 tabela2 <- uvozi.place(trenutno)
 tabela3 <- uvozi.turizem(trenutno)
 obcine <- uvozi.obcine()
-View(tabela3)
-# Urejanje podatkov: Podatke o ob�inah pretvorimo v podatke o regijah, ter izlo�ilo nepotrebne podatke.
+
+# Urejanje podatkov: Podatke o občinah pretvorimo v podatke o regijah, ter izločilo nepotrebne podatke.
 
 
 regije <- subset(obcine, select=c("povrsina","prebivalci","naselja","regija"))
@@ -109,7 +108,7 @@ obcine <- subset(obcine, select=c("obcina","regija"))
 
 zdruzena1 <- merge(obcine,tabela1, by = "obcina") %>% subset(select =c("regija","leto","vrsta.meritve","vrednost"))
 zdruzena1 <- transform(zdruzena1, vrednost = as.integer(vrednost))
-#zdruzena1 <- zdruzena1 %>% group_by(regija,leto,vrsta.meritve) %>% summarise_each(funs(sum))
+zdruzena1 <- zdruzena1 %>% group_by(regija,leto,vrsta.meritve) %>% summarise_each(funs(sum))
 
 
 zdruzena2 <- merge(obcine,tabela2, by = "obcina") %>% subset(select =c("regija","leto","povprecna.mesecna.bruto.placa"))
@@ -121,6 +120,3 @@ zdruzena3 <- transform(zdruzena3, vrednost = as.integer(vrednost))
 zdruzena3 <- zdruzena3 %>% group_by(regija,leto,parameter) %>% summarise_each(funs(sum))
 
 
-View(zdruzena1)
-# View(zdruzena2)
-View(zdruzena3)
