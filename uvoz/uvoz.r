@@ -21,6 +21,7 @@ trenutno = setwd(Sys.getenv("HOME"));
 uvozi.meritve <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "meritve.csv");
   tabela <- read.csv2(fpot,
+                      locale=locale(encoding="Windows-1250"),
                       skip = 1,
                       header = FALSE,
                       col.names = c("obcina", "vrsta meritve", "leto", "vrednost"),
@@ -35,6 +36,7 @@ uvozi.meritve <- function(trenutno) {
 uvozi.place <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "place.csv");
   tabela <- read.csv2(fpot,
+                      locale=locale(encoding="Windows-1250"),
                       col.names = c("obcina","leto","povprecna mesecna bruto placa"),
                       skip = 3,
                       header = FALSE,
@@ -50,6 +52,7 @@ uvozi.place <- function(trenutno) {
 uvozi.turizem <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "turizem.csv");
   tabela <- read.csv2(fpot,
+                      locale=locale(encoding="Windows-1250"),
                       skip = 4,
                       na=c("", " ","z","-"),
                       col.names = c("obcina", "leto", "parameter" , "vrednost"),
