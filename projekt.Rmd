@@ -35,7 +35,7 @@ Seminarska naloga analizira razvitost slovenskih regij glede na sledeče podatke
 
 # Obdelava, uvoz in čiščenje podatkov
 
-```{r uvoz, echo=FALSE, message=FALSE}
+```{r uvoz, echo=FALSE, message=FALSE, warning = FALSE}
 source(c("uvoz/uvoz.r"), encoding = "UTF-8")
 ```
 
@@ -52,13 +52,6 @@ kable(head(zdruzena3))
 head(zdruzena3)
 ```
 
-Slika \ref{fig:histogram} prikazuje porazdelitev Ĺˇtevila naselij v obÄŤinah.
-
-```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram Ĺˇtevila naselij v obÄŤinah'}
-#ggplot(obcine, aes(x = naselja)) + geom_histogram() +
-#  ggtitle("Pogostost Ĺˇtevila naselij") + xlab("Ĺ tevilo naselij") + ylab("Ĺ tevilo obÄŤin")
-```
-
 ***
 
 # Analiza in vizualizacija podatkov
@@ -67,9 +60,8 @@ Slika \ref{fig:histogram} prikazuje porazdelitev Ĺˇtevila naselij v obÄŤinah
 #source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
-Slika \ref{fig:zemljevid} prikazuje povpreÄŤno velikost druĹľine za vsako obÄŤino.
 
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povpreÄŤnega Ĺˇtevila otrok v druĹľini'}
+```{r zemljevid, echo=FALSE, fig.align='center', fig.cap=''}
 #ggplot() + geom_polygon(data = left_join(zemljevid, povprecja, by = c("OB_UIME" = "obcina")),
 #                        aes(x = long, y = lat, group = group, fill = povprecje)) +
 #  ggtitle("PovpreÄŤno Ĺˇtevilo otrok v druĹľini") + xlab("") + ylab("") +
@@ -84,7 +76,6 @@ Slika \ref{fig:zemljevid} prikazuje povpreÄŤno velikost druĹľine za vsako ob
 #source("analiza/analiza.r", encoding = "UTF-8")
 ```
 
-Slika \ref{fig:graf} prikazuje povezavo med Ĺˇtevilom naselij in povrĹˇino obÄŤine.
 
 ```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med Ĺˇtevilom naselij in povrĹˇino obÄŤine'}
 #ggplot(inner_join(obcine, data.frame(obcina = names(skupine),

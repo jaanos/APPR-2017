@@ -4,63 +4,49 @@
 Encoding("UTF-8")
 library(dplyr)
 library(rvest)
-library(reader)
+library(readr)
 library(stats)
 library(tidyr)
 
 # Nastavitev relativne poti do csv datotek:
 
-this.dir <- dirname(parent.frame(2)$ofile)
-setwd(this.dir)
-setwd('..')
-trenutno = setwd(Sys.getenv("HOME"));
-
+# this.dir <- dirname(parent.frame(2)$ofile)
+# setwd(this.dir)
+# setwd('..')
+# trenutno = setwd(Sys.getenv("HOME"));
+trenutno <- "."
 
 # Funkcije, ki uvozijo podatke iz datoteke druzine csv:
 
 uvozi.meritve <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "meritve.csv");
-  tabela <- read.csv2(fpot,
-                      locale=locale(encoding="Windows-1250"),
-                      skip = 1,
-                      header = FALSE,
-                      col.names = c("obcina", "vrsta meritve", "leto", "vrednost"),
-                      na=c("", " ")
-  )
-  tabela <- tabela %>% fill(1:2)
-  vrstice.z.na <- apply(tabela, 1, function(x){any(is.na(x))})
-  tabela <- tabela[!vrstice.z.na,]
+  tabela <- read_delim(fpot, ";",
+                       locale = locale(encoding = "Windows-1250", decimal_mark = "."),
+                       skip = 1,
+                       col_names = c("obcina", "vrsta.meritve", "leto", "vrednost"),
+                       na=c("", " ", "-")) %>% fill(1:2) %>% drop_na()
   return(tabela)
 }
 
 uvozi.place <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "place.csv");
-  tabela <- read.csv2(fpot,
-                      locale=locale(encoding="Windows-1250"),
-                      col.names = c("obcina","leto","povprecna mesecna bruto placa"),
-                      skip = 3,
-                      header = FALSE,
-                      na=c("", " ","-")
-  )
-  tabela <- tabela %>% fill(1) 
-  vrstice.z.na <- apply(tabela, 1, function(x){any(is.na(x))})
-  tabela <- tabela[!vrstice.z.na,]
+  tabela <- read_delim(fpot, ";",
+                       locale=locale(encoding="Windows-1250", decimal_mark = "."),
+                       col_names = c("obcina","leto","povprecna.mesecna.bruto.placa"),
+                       skip = 3,
+                       na=c("", " ","-")) %>% fill(1) %>% drop_na()
   return(tabela)
 }
 
 
 uvozi.turizem <- function(trenutno) {
   fpot = file.path(trenutno, 'podatki', "turizem.csv");
-  tabela <- read.csv2(fpot,
+  tabela <- read_csv2(fpot,
                       locale=locale(encoding="Windows-1250"),
-                      skip = 4,
+                      skip = 5,
                       na=c("", " ","z","-"),
-                      col.names = c("obcina", "leto", "parameter" , "vrednost"),
-                      header = FALSE
-  )
-  tabela <- tabela %>% fill(1:2)
-  vrstice.z.na <- apply(tabela, 1, function(x){any(is.na(x))})
-  tabela <- tabela[!vrstice.z.na,]
+                      col_names = c("obcina", "leto", "parameter" , "vrednost")) %>%
+    fill(1:2) %>% drop_na()
   return(tabela)  
 }
 
@@ -75,8 +61,8 @@ uvozi.obcine <- function() {
   colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
                         "ustanovitev", "pokrajina", "regija", "odcepitev")
   tabela$obcina <- gsub("Slovenskih", "Slov.", tabela$obcina)
-  tabela$obcina[tabela$obcina == "Kanal ob SoÄŤi"] <- "Kanal"
-  tabela$obcina[tabela$obcina == "LoĹˇki potok"] <- "LoĹˇki Potok"
+  tabela$obcina[tabela$obcina == "Kanal ob Soči"] <- "Kanal"
+  tabela$obcina[tabela$obcina == "Loški potok"] <- "Loški Potok"
   for (col in colnames(tabela)) {
     tabela[tabela[[col]] == "-", col] <- NA
   }
@@ -114,9 +100,12 @@ zdruzena1 <- transform(zdruzena1, vrednost = as.integer(vrednost))
 zdruzena1 <- zdruzena1 %>% group_by(regija,leto,vrsta.meritve) %>% summarise_each(funs(sum))
 
 
-zdruzena2 <- merge(obcine,tabela2, by = "obcina") %>% subset(select =c("regija","leto","povprecna.mesecna.bruto.placa"))
-transform(zdruzena2, povprecna.mesecna.bruto.placa = as.numeric(povprecna.mesecna.bruto.placa))
+# zdruzena2 <- merge(obcine,tabela2, by = "obcina") %>% subset(select =c("regija","leto","povprecna.mesecna.bruto.placa"))
+# transform(zdruzena2, povprecna.mesecna.bruto.placa = as.numeric(povprecna.mesecna.bruto.placa))
 #zdruzena2 <- zdruzena2 %>% group_by(regija,leto) %>% summarise_each(funs(mean))
+
+zdruzena2 <- inner_join(obcine, tabela2) %>% select(-obcina) %>% group_by(regija, leto) %>%
+  summarise(povprecna.mesecna.bruto.placa = mean(povprecna.mesecna.bruto.placa))
 
 zdruzena3 <- merge(obcine,tabela3, by = "obcina") %>% subset(select =c("regija","leto","parameter","vrednost"))
 zdruzena3 <- transform(zdruzena3, vrednost = as.integer(vrednost))
